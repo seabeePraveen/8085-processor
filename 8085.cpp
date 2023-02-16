@@ -85,6 +85,9 @@ string increaseHexByOne(string hex){
         dec /= 16;
     }
     reverse(result.begin(), result.end());
+    if (hexToDec(result) > 65535){
+        throw 103;
+    }
     return result;
 }
 
@@ -113,7 +116,7 @@ int main(){
                     break;
                 }
                 string cond="";
-            getline(cin,cond);// to flush the std input
+                getline(cin,cond);// to flush the std input
                 while(cond!="$"){
                     cout<<"M"<<loc<<":";
                     if(mem(loc)==0){
@@ -145,7 +148,7 @@ int main(){
                 int i=0;
                 string cond;
                 string registe = "ABCDEHL";
-            getline(cin,cond);//to flush the std input
+                getline(cin,cond);//to flush the std input
                 while(i < 7){
                     cout<<registe[i]<<":";
                     if(get_reg(registe[i])==0){
@@ -179,9 +182,9 @@ int main(){
                 }
             }
             else if(in=='G' || in=='g'){
-            cout<<"Location:";
-            string loc;
-            runprogram(hexToDec(loc));
+                cout<<"Location:";
+                string loc;
+                runprogram(hexToDec(loc));
             }
         }
         catch(int errorCode){
@@ -191,6 +194,9 @@ int main(){
                     break;
                 case 102:
                     cout<<"\n"<<errorCode<<"Unrecognized Memory Location \n Press Enter"<<endl;
+                    break;
+                case 103:
+                    cout<<"\n"<<errorCode<<"Memory Location Exceeded \n Press Enter"<<endl;
                     break;
             }
         }
