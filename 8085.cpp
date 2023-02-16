@@ -6,6 +6,7 @@ using namespace std;
 short memory[65536];
 short reg[7];
 string F="00000000";
+
 int hexToDec(string hex){
     int dec = 0;
     int base = 1;
@@ -87,11 +88,13 @@ string increaseHexByOne(string hex){
     return result;
 }
 
-
-
 int mem(string loc){
     int decloc = hexToDec(loc);
     return memory[decloc];
+}
+
+void runprogram(int loc){
+
 }
 
 int main(){
@@ -110,6 +113,7 @@ int main(){
                     break;
                 }
                 string cond="";
+            getline(cin,cond);// to flush the std input
                 while(cond!="$"){
                     cout<<"M"<<loc<<":";
                     if(mem(loc)==0){
@@ -141,6 +145,7 @@ int main(){
                 int i=0;
                 string cond;
                 string registe = "ABCDEHL";
+            getline(cin,cond);//to flush the std input
                 while(i < 7){
                     cout<<registe[i]<<":";
                     if(get_reg(registe[i])==0){
@@ -171,11 +176,12 @@ int main(){
                         cout<<"ERROR OCCURED"<<endl;
                         break;
                     }
-
                 }
             }
             else if(in=='G' || in=='g'){
-
+            cout<<"Location:";
+            string loc;
+            runprogram(hexToDec(loc));
             }
         }
         catch(int errorCode){
