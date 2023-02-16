@@ -98,7 +98,6 @@ int main(){
                         loc = increaseHexByOne(loc);
                     }
                 }
-            case 'R':
         }
     }
 }
