@@ -101,29 +101,8 @@ void runprogram(int loc){
     int ef = hexToDec("EF");
     while(memory[loc]!=ef){
         string hex_mem = decToHex(memory[loc]);
-        if(hex_mem == "78"){// Mov A,B
-            reg[0]=reg[1];
-        }
-        else if(hex_mem == "79"){//MOV A,C
-            reg[0]=reg[2];
-        }
-        else if(hex_mem == "7A"){//MOV A,D
-            reg[0]=reg[3];
-        }
-        else if(hex_mem == "7B"){//MOV A,E
-            reg[0]=reg[4];
-        }
-        else if(hex_mem == "7C"){//MOV A,H
-            reg[0]=reg[5];
-        }
-        else if(hex_mem == "7D"){//MOV A,L
-            reg[0]=reg[6];
-        }
-        else if(hex_mem == "7E"){//MOV A,M
-
-        }
-        else if(hex_mem == "47"){//MOV B,A
-            reg[1]=reg[0];
+        // NOP - No Operation
+        if(hex_mem == "00"){// NOP
         }
         else if(hex_mem == "41"){//MOV B,C
             reg[1]=reg[2];
@@ -143,8 +122,8 @@ void runprogram(int loc){
         else if(hex_mem == "46"){//MOV B,M
             
         }
-        else if(hex_mem == "4F"){//MOV C,A
-            reg[2]=reg[0];
+        else if(hex_mem == "47"){//MOV B,A
+            reg[1]=reg[0];
         }
         else if(hex_mem == "48"){//MOV C,B
             reg[2]=reg[1];
@@ -164,8 +143,8 @@ void runprogram(int loc){
         else if(hex_mem == "4E"){//MOV C,M
             
         }
-        else if(hex_mem == "57"){//MOV D,A
-            reg[3]=reg[0];
+        else if(hex_mem == "4F"){//MOV C,A
+            reg[2]=reg[0];
         }
         else if(hex_mem == "50"){//MOV D,B
             reg[3]=reg[1];
@@ -183,10 +162,10 @@ void runprogram(int loc){
             reg[3]=reg[6];
         }
         else if(hex_mem == "56"){//MOV D,M
-
+            
         }
-        else if(hex_mem == "5F"){//MOV E,A
-            reg[4]=reg[0];
+        else if(hex_mem == "57"){//MOV D,A
+            reg[3]=reg[0];
         }
         else if(hex_mem == "58"){//MOV E,B
             reg[4]=reg[1];
@@ -206,8 +185,8 @@ void runprogram(int loc){
         else if(hex_mem == "5E"){//MOV E,M
             
         }
-        else if(hex_mem == "67"){//MOV H,A
-            reg[5]=reg[0];
+        else if(hex_mem == "5F"){//MOV E,A
+            reg[4]=reg[0];
         }
         else if(hex_mem == "60"){//MOV H,B
             reg[5]=reg[1];
@@ -227,8 +206,8 @@ void runprogram(int loc){
         else if(hex_mem == "66"){//MOV H,M
             
         }
-        else if(hex_mem == "6F"){//MOV L,A
-            reg[6]=reg[0];
+        else if(hex_mem == "67"){//MOV H,A
+            reg[5]=reg[0];
         }
         else if(hex_mem == "68"){//MOV L,B
             reg[6]=reg[1];
@@ -248,8 +227,8 @@ void runprogram(int loc){
         else if(hex_mem == "6E"){//MOV L,M
 
         }
-        else if(hex_mem == "77"){//MOV M,A
-
+        else if(hex_mem == "6F"){//MOV L,A
+            reg[6]=reg[0];
         }
         else if(hex_mem == "70"){//MOV M,B
 
@@ -267,6 +246,30 @@ void runprogram(int loc){
 
         }
         else if(hex_mem == "75"){//MOV M,L
+
+        }
+        else if(hex_mem == "77"){//MOV M,A
+
+        }
+        else if(hex_mem == "78"){// Mov A,B
+            reg[0]=reg[1];
+        }
+        else if(hex_mem == "79"){//MOV A,C
+            reg[0]=reg[2];
+        }
+        else if(hex_mem == "7A"){//MOV A,D
+            reg[0]=reg[3];
+        }
+        else if(hex_mem == "7B"){//MOV A,E
+            reg[0]=reg[4];
+        }
+        else if(hex_mem == "7C"){//MOV A,H
+            reg[0]=reg[5];
+        }
+        else if(hex_mem == "7D"){//MOV A,L
+            reg[0]=reg[6];
+        }
+        else if(hex_mem == "7E"){//MOV A,M
 
         }
         loc++;
