@@ -81,8 +81,8 @@ int main(){
                 string cond="";
                 while(cond!="$"){
                     cout<<"M"<<loc<<":"<<decToHex(mem(loc))<<"-";
-                    cin>>cond;
-                    if(cond.empty()){
+                    getline(cin,cond);
+                    if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
                         loc=increaseHexByOne(loc);
                     }
                     else if(cond!="$"){
