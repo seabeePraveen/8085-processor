@@ -47,7 +47,7 @@ short get_reg(char r='A'){
         return reg[6];
     }
     else{
-        cout<<"Error register Not Found";
+        throw 101;
         return -1;
     }
 
@@ -98,82 +98,95 @@ int main(){
     memset(memory,0,sizeof(memory));
     cout<<"_STUDENT_85"<<endl;
     while(true){
-        char in;
-        cin>>in;
-        if(in=='M' || in=='m'){
-            string loc;
-            cin>>loc;
-            if(loc.size()>4){
-                cout<<"Error!"<<endl;
-                break;
-            }
-            string cond="";
-            while(cond!="$"){
-                cout<<"M"<<loc<<":";
-                if(mem(loc)==0){
-                    cout<<"00"<<"-";
+        try{
+            char in;
+            cin>>in;
+            if(in=='M' || in=='m'){
+                string loc;
+                cin>>loc;
+                if(loc.size()>4){
+                    throw 102;
+                    cout<<"Error!"<<endl;
+                    break;
                 }
-                else{
-                    cout<<decToHex(mem(loc))<<"-";
-                }
-                getline(cin,cond);
-                if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
-                    loc=increaseHexByOne(loc);
-                }
-                else if(cond!="$"){
-                    int l = cond.size();
-                    if(l==1 || l==2){
-                        int dec_loc = hexToDec(loc);
-                        memory[dec_loc]=hexToDec(cond);
+                string cond="";
+                while(cond!="$"){
+                    cout<<"M"<<loc<<":";
+                    if(mem(loc)==0){
+                        cout<<"00"<<"-";
                     }
                     else{
-                        int dec_loc = hexToDec(loc);
-                        string val = ""+cond[l-2]+cond[l-1];
-                        memory[dec_loc]=hexToDec(val);
+                        cout<<decToHex(mem(loc))<<"-";
                     }
-                    loc = increaseHexByOne(loc);
+                    getline(cin,cond);
+                    if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
+                        loc=increaseHexByOne(loc);
+                    }
+                    else if(cond!="$"){
+                        int l = cond.size();
+                        if(l==1 || l==2){
+                            int dec_loc = hexToDec(loc);
+                            memory[dec_loc]=hexToDec(cond);
+                        }
+                        else{
+                            int dec_loc = hexToDec(loc);
+                            string val = ""+cond[l-2]+cond[l-1];
+                            memory[dec_loc]=hexToDec(val);
+                        }
+                        loc = increaseHexByOne(loc);
+                    }
                 }
             }
-        }
-        else if(in=='R' || in=='r'){
-            int i=0;
-            string cond;
-            string registe = "ABCDEHL";
-            while(i < 7){
-                cout<<registe[i]<<":";
-                if(get_reg(registe[i])==0){
-                    cout<<"00"<<"-";
-                }
-                else{
-                    cout<<decToHex(get_reg(registe[i]))<<"-";
-                }
-                getline(cin,cond);
-                if(cond != "$"){
-                    int l = cond.size();
-                    if(l==1 || l==2){
-                        reg[i]=hexToDec(cond);
+            else if(in=='R' || in=='r'){
+                int i=0;
+                string cond;
+                string registe = "ABCDEHL";
+                while(i < 7){
+                    cout<<registe[i]<<":";
+                    if(get_reg(registe[i])==0){
+                        cout<<"00"<<"-";
                     }
-                    else if(l!=0){
-                        char val[3];
-                        val[0] = cond[l-2];
-                        val[1] = cond[l-1];
-                        val[2] = '\0';
-                        reg[i]=hexToDec(val);
+                    else{
+                        cout<<decToHex(get_reg(registe[i]))<<"-";
                     }
-                    i++;
+                    getline(cin,cond);
+                    if(cond != "$"){
+                        int l = cond.size();
+                        if(l==1 || l==2){
+                            reg[i]=hexToDec(cond);
+                        }
+                        else if(l!=0){
+                            char val[3];
+                            val[0] = cond[l-2];
+                            val[1] = cond[l-1];
+                            val[2] = '\0';
+                            reg[i]=hexToDec(val);
+                        }
+                        i++;
+                    }
+                    else if(cond == "$"){
+                        break;
+                    }
+                    else{
+                        cout<<"ERROR OCCURED"<<endl;
+                        break;
+                    }
+
                 }
-                else if(cond == "$"){
-                    break;
-                }
-                else{
-                    cout<<"ERROR OCCURED"<<endl;
-                    break;
-                }
+            }
+            else if(in=='G' || in=='g'){
 
             }
         }
-        else if(in=='G' || in=='g'){
-
+        catch(int errorCode){
+            switch(errorCode){
+                case 101:
+                    cout<<"\n"<<errorCode<<"Unrecognized register \n Press Enter"<<endl;
+                    break;
+                case 102:
+                    cout<<"\n"<<errorCode<<"Unrecognized Memory Location \n Press Enter"<<endl;
+                    break;
+            }
         }
     }
 }
