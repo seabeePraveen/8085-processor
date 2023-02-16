@@ -272,6 +272,60 @@ void runprogram(int loc){
         else if(hex_mem == "7E"){//MOV A,M
 
         }
+        else if(hex_mem == "80"){// ADD B
+        }
+        else if(hex_mem == "81"){// ADD C
+        }
+        else if(hex_mem == "82"){// ADD D
+        }
+        else if(hex_mem == "83"){// ADD E
+        }
+        else if(hex_mem == "84"){// ADD H
+        }
+        else if(hex_mem == "85"){// ADD L
+        }
+        else if(hex_mem == "86"){// ADD M
+        }
+        else if(hex_mem == "87"){// ADD A
+        }
+        else if(hex_mem == "88"){// ADC B
+        }
+        else if(hex_mem == "89"){// ADC C
+        }
+        else if(hex_mem == "8A"){// ADC D
+        }
+        else if(hex_mem == "8B"){// ADC E
+        }
+        else if(hex_mem == "8C"){// ADC H
+        }
+        else if(hex_mem == "8D"){// ADC L
+        }
+        else if(hex_mem == "8E"){// ADC M
+        }
+        else if(hex_mem == "8F"){// ADC A
+        }
+        else if(hex_mem == "90"){// SUB B
+        }
+        else if(hex_mem == "91"){// SUB C
+        }
+        else if(hex_mem == "92"){// SUB D
+        }
+        else if(hex_mem == "93"){// SUB E
+        }
+        else if(hex_mem == "94"){// SUB H
+        }
+        else if(hex_mem == "95"){// SUB L
+        }
+        else if(hex_mem == "96"){// SUB M
+        }
+        else if(hex_mem == "97"){// SUB A
+        }
+        else if(hex_mem == "98"){// SBB B
+        }
+        else if(hex_mem == "99"){// SBB C
+        }
+        else if(hex_mem == "9A"){// SBB D
+        }
         loc++;
     }
 }
