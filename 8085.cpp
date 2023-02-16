@@ -119,7 +119,154 @@ void runprogram(int loc){
         else if(hex_mem == "7D"){//MOV A,L
             reg[0]=reg[6];
         }
-        else if(hex_mem == "7E"){// MOV A,M
+        else if(hex_mem == "7E"){//MOV A,M
+
+        }
+        else if(hex_mem == "47"){//MOV B,A
+            reg[1]=reg[0];
+        }
+        else if(hex_mem == "41"){//MOV B,C
+            reg[1]=reg[2];
+        }
+        else if(hex_mem == "42"){//MOV B,D
+            reg[1]=reg[3];
+        }
+        else if(hex_mem == "43"){//MOV B,E
+            reg[1]=reg[4];
+        }
+        else if(hex_mem == "44"){//MOV B,H
+            reg[1]=reg[5];
+        }
+        else if(hex_mem == "45"){//MOV B,L
+            reg[1]=reg[6];
+        }
+        else if(hex_mem == "46"){//MOV B,M
+            
+        }
+        else if(hex_mem == "4F"){//MOV C,A
+            reg[2]=reg[0];
+        }
+        else if(hex_mem == "48"){//MOV C,B
+            reg[2]=reg[1];
+        }
+        else if(hex_mem == "4A"){//MOV C,D
+            reg[2]=reg[3];
+        }
+        else if(hex_mem == "4B"){//MOV C,E
+            reg[2]=reg[4];
+        }
+        else if(hex_mem == "4C"){//MOV C,H
+            reg[2]=reg[5];
+        }
+        else if(hex_mem == "4D"){//MOV C,L
+            reg[2]=reg[6];
+        }
+        else if(hex_mem == "4E"){//MOV C,M
+            
+        }
+        else if(hex_mem == "57"){//MOV D,A
+            reg[3]=reg[0];
+        }
+        else if(hex_mem == "50"){//MOV D,B
+            reg[3]=reg[1];
+        }
+        else if(hex_mem == "51"){//MOV D,C
+            reg[3]=reg[2];
+        }
+        else if(hex_mem == "53"){//MOV D,E
+            reg[3]=reg[4];
+        }
+        else if(hex_mem == "54"){//MOV D,H
+            reg[3]=reg[5];
+        }
+        else if(hex_mem == "55"){//MOV D,L
+            reg[3]=reg[6];
+        }
+        else if(hex_mem == "56"){//MOV D,M
+
+        }
+        else if(hex_mem == "5F"){//MOV E,A
+            reg[4]=reg[0];
+        }
+        else if(hex_mem == "58"){//MOV E,B
+            reg[4]=reg[1];
+        }
+        else if(hex_mem == "59"){//MOV E,C
+            reg[4]=reg[2];
+        }
+        else if(hex_mem == "5A"){//MOV E,D
+            reg[4]=reg[3];
+        }
+        else if(hex_mem == "5C"){//MOV E,H
+            reg[4]=reg[5];
+        }
+        else if(hex_mem == "5D"){//MOV E,L
+            reg[4]=reg[6];
+        }
+        else if(hex_mem == "5E"){//MOV E,M
+            
+        }
+        else if(hex_mem == "67"){//MOV H,A
+            reg[5]=reg[0];
+        }
+        else if(hex_mem == "60"){//MOV H,B
+            reg[5]=reg[1];
+        }
+        else if(hex_mem == "61"){//MOV H,C
+            reg[5]=reg[2];
+        }
+        else if(hex_mem == "62"){//MOV H,D
+            reg[5]=reg[3];
+        }
+        else if(hex_mem == "63"){//MOV H,E
+            reg[5]=reg[4];
+        }
+        else if(hex_mem == "65"){//MOV H,L
+            reg[5]=reg[6];
+        }
+        else if(hex_mem == "66"){//MOV H,M
+            
+        }
+        else if(hex_mem == "6F"){//MOV L,A
+            reg[6]=reg[0];
+        }
+        else if(hex_mem == "68"){//MOV L,B
+            reg[6]=reg[1];
+        }
+        else if(hex_mem == "69"){//MOV L,C
+            reg[6]=reg[2];
+        }
+        else if(hex_mem == "6A"){//MOV L,D
+            reg[6]=reg[3];
+        }
+        else if(hex_mem == "6B"){//MOV L,E
+            reg[6]=reg[4];
+        }
+        else if(hex_mem == "6C"){//MOV L,H
+            reg[6]=reg[5];
+        }
+        else if(hex_mem == "6E"){//MOV L,M
+
+        }
+        else if(hex_mem == "77"){//MOV M,A
+
+        }
+        else if(hex_mem == "70"){//MOV M,B
+
+        }
+        else if(hex_mem == "71"){//MOV M,C
+
+        }
+        else if(hex_mem == "72"){//MOV M,D
+            
+        }
+        else if(hex_mem == "73"){//MOV M,E
+
+        }
+        else if(hex_mem == "74"){//MOV M,H
+
+        }
+        else if(hex_mem == "75"){//MOV M,L
 
         }
         loc++;
