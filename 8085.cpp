@@ -5,6 +5,7 @@ using namespace std;
 
 short memory[65536];
 short reg[7];
+short M;
 string F="00000000";
 
 int hexToDec(string hex){
@@ -97,7 +98,32 @@ int mem(string loc){
 }
 
 void runprogram(int loc){
+    int ef = hexToDec("EF");
+    while(memory[loc]!=ef){
+        string hex_mem = decToHex(memory[loc]);
+        if(hex_mem == "78"){// Mov A,B
+            reg[0]=reg[1];
+        }
+        else if(hex_mem == "79"){//MOV A,C
+            reg[0]=reg[2];
+        }
+        else if(hex_mem == "7A"){//MOV A,D
+            reg[0]=reg[3];
+        }
+        else if(hex_mem == "7B"){//MOV A,E
+            reg[0]=reg[4];
+        }
+        else if(hex_mem == "7C"){//MOV A,H
+            reg[0]=reg[5];
+        }
+        else if(hex_mem == "7D"){//MOV A,L
+            reg[0]=reg[6];
+        }
+        else if(hex_mem == "7E"){// MOV A,M
 
+        }
+        loc++;
+    }
 }
 
 int main(){
@@ -184,6 +210,7 @@ int main(){
             else if(in=='G' || in=='g'){
                 cout<<"Location:";
                 string loc;
+                cin>>loc;
                 runprogram(hexToDec(loc));
             }
         }
