@@ -71,7 +71,6 @@ int main(){
         cin>>in;
         switch(in){
             case 'M':
-                cout<<"Location:";
                 string loc;
                 cin>>loc;
                 if(loc.size()>4){
@@ -99,6 +98,7 @@ int main(){
                         loc = increaseHexByOne(loc);
                     }
                 }
+            case 'R':
         }
     }
 }
