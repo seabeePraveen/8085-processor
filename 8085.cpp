@@ -58,6 +58,8 @@ string increaseHexByOne(string hex){
     return result;
 }
 
+
+
 int mem(string loc){
     int decloc = hexToDec(loc);
     return memory[decloc];
@@ -69,9 +71,8 @@ int main(){
     while(true){
         char in;
         cin>>in;
-        switch(in){
-            case 'M':
-                string loc;
+        if(in=='M'){
+            string loc;
                 cin>>loc;
                 if(loc.size()>4){
                     cout<<"Error!"<<endl;
