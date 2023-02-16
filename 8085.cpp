@@ -111,7 +111,7 @@ int main(){
                 break;
             }
             string cond="";
-            getline(cin,cond);
+            getline(cin,cond);// to flush the std input
             while(cond!="$"){
                 cout<<"M"<<loc<<":";
                 if(mem(loc)==0){
