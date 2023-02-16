@@ -79,7 +79,13 @@ int main(){
                 }
                 string cond="";
                 while(cond!="$"){
-                    cout<<"M"<<loc<<":"<<decToHex(mem(loc))<<"-";
+                    cout<<"M"<<loc<<":";
+                    if(mem(loc)==0){
+                        cout<<"00"<<"-";
+                    }
+                    else{
+                        cout<<decToHex(mem(loc))<<"-";
+                    }
                     getline(cin,cond);
                     if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
                         loc=increaseHexByOne(loc);
