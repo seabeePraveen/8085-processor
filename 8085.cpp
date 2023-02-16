@@ -64,7 +64,7 @@ int mem(string loc){
 }
 
 int main(){
-    memset(memory,'0',sizeof(memory));
+    memset(memory,0,sizeof(memory));
     cout<<"_STUDENT_85"<<endl;
     while(true){
         char in;
