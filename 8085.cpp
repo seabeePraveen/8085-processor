@@ -4,8 +4,8 @@
 using namespace std;
 
 short memory[65536];
-string A,B,C,D,E,H,L;
-
+short reg[7];
+string F="00000000";
 int hexToDec(string hex){
     int dec = 0;
     int base = 1;
@@ -22,6 +22,35 @@ int hexToDec(string hex){
         base *= 16;
     }
     return dec;
+}
+
+short get_reg(char r='A'){
+    if(r == 'A'){
+        return reg[0];
+    }
+    else if(r == 'B'){
+        return reg[1];
+    }
+    else if(r == 'C'){
+        return reg[2];
+    }
+    else if(r == 'D'){
+        return reg[3];
+    }
+    else if(r == 'E'){
+        return reg[4];
+    }
+    else if(r == 'H'){
+        return reg[5];
+    }
+    else if(r == 'L'){
+        return reg[6];
+    }
+    else{
+        cout<<"Error register Not Found";
+        return -1;
+    }
+
 }
 
 string decToHex(int dec){
@@ -99,7 +128,7 @@ int main(){
                     }
                     else{
                         int dec_loc = hexToDec(loc);
-                        string val = ""+cond[cond.size()-2]+cond[cond.size()-1];
+                        string val = ""+cond[l-2]+cond[l-1];
                         memory[dec_loc]=hexToDec(val);
                     }
                     loc = increaseHexByOne(loc);
@@ -107,7 +136,41 @@ int main(){
             }
         }
         else if(in=='R' || in=='r'){
+            int i=0;
+            string cond;
+            string registe = "ABCDEHL";
+            while(i < 7){
+                cout<<registe[i]<<":";
+                if(get_reg(registe[i])==0){
+                    cout<<"00"<<"-";
+                }
+                else{
+                    cout<<decToHex(get_reg(registe[i]))<<"-";
+                }
+                getline(cin,cond);
+                if(cond != "$"){
+                    int l = cond.size();
+                    if(l==1 || l==2){
+                        reg[i]=hexToDec(cond);
+                    }
+                    else if(l!=0){
+                        char val[3];
+                        val[0] = cond[l-2];
+                        val[1] = cond[l-1];
+                        val[2] = '\0';
+                        reg[i]=hexToDec(val);
+                    }
+                    i++;
+                }
+                else if(cond == "$"){
+                    break;
+                }
+                else{
+                    cout<<"ERROR OCCURED"<<endl;
+                    break;
+                }
 
+            }
         }
         else if(in=='G' || in=='g'){
 
