@@ -71,40 +71,46 @@ int main(){
     while(true){
         char in;
         cin>>in;
-        if(in=='M'){
+        if(in=='M' || in=='m'){
             string loc;
-                cin>>loc;
-                if(loc.size()>4){
-                    cout<<"Error!"<<endl;
-                    break;
+            cin>>loc;
+            if(loc.size()>4){
+                cout<<"Error!"<<endl;
+                break;
+            }
+            string cond="";
+            while(cond!="$"){
+                cout<<"M"<<loc<<":";
+                if(mem(loc)==0){
+                    cout<<"00"<<"-";
                 }
-                string cond="";
-                while(cond!="$"){
-                    cout<<"M"<<loc<<":";
-                    if(mem(loc)==0){
-                        cout<<"00"<<"-";
+                else{
+                    cout<<decToHex(mem(loc))<<"-";
+                }
+                getline(cin,cond);
+                if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
+                    loc=increaseHexByOne(loc);
+                }
+                else if(cond!="$"){
+                    int l = cond.size();
+                    if(l==1 || l==2){
+                        int dec_loc = hexToDec(loc);
+                        memory[dec_loc]=hexToDec(cond);
                     }
                     else{
-                        cout<<decToHex(mem(loc))<<"-";
+                        int dec_loc = hexToDec(loc);
+                        string val = ""+cond[cond.size()-2]+cond[cond.size()-1];
+                        memory[dec_loc]=hexToDec(val);
                     }
-                    getline(cin,cond);
-                    if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
-                        loc=increaseHexByOne(loc);
-                    }
-                    else if(cond!="$"){
-                        int l = cond.size();
-                        if(l==1 || l==2){
-                            int dec_loc = hexToDec(loc);
-                            memory[dec_loc]=hexToDec(cond);
-                        }
-                        else{
-                            int dec_loc = hexToDec(loc);
-                            string val = ""+cond[cond.size()-2]+cond[cond.size()-1];
-                            memory[dec_loc]=hexToDec(val);
-                        }
-                        loc = increaseHexByOne(loc);
-                    }
+                    loc = increaseHexByOne(loc);
                 }
+            }
+        }
+        else if(in=='R' || in=='r'){
+
+        }
+        else if(in=='G' || in=='g'){
+
         }
     }
 }
