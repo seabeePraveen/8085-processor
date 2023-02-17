@@ -84,7 +84,7 @@ string getPointer(){
 }
 
 short get_M(){
-    string HLpointer =decToHex(get_reg('H')) + decToHex(get_reg('L'));
+    string HLpointer = decToHex(get_reg('H')) + decToHex(get_reg('L'));
     return mem(HLpointer);
 }
 
@@ -112,6 +112,14 @@ string increaseHexByOne(string hex){
         throw 103;
     }
     return result;
+}
+
+bool check_flag(int opcode){
+
+}
+
+void change_flag(){
+
 }
 
 void runprogram(int loc){
@@ -291,26 +299,45 @@ void runprogram(int loc){
             reg[0] = get_M();
         }
         else if(hex_mem == "80"){// ADD B
+            reg[0]=reg[0]+reg[1];
+            change_flag();
         }
         else if(hex_mem == "81"){// ADD C
+            reg[0]=reg[0]+reg[2];
+            change_flag();
         }
         else if(hex_mem == "82"){// ADD D
+            reg[0]=reg[0]+reg[3];
+            change_flag();
         }
         else if(hex_mem == "83"){// ADD E
+            reg[0]=reg[0]+reg[4];
+            change_flag();
         }
         else if(hex_mem == "84"){// ADD H
+            reg[0]=reg[0]+reg[5];
+            change_flag();
         }
         else if(hex_mem == "85"){// ADD L
+            reg[0]=reg[0]+reg[6];
+            change_flag();
         }
         else if(hex_mem == "86"){// ADD M
+            reg[0]=reg[0]+get_M();
+            change_flag();
         }
         else if(hex_mem == "87"){// ADD A
+            reg[0]=reg[0]+reg[0];
+            change_flag();
         }
         else if(hex_mem == "88"){// ADC B
+
         }
         else if(hex_mem == "89"){// ADC C
+
         }
         else if(hex_mem == "8A"){// ADC D
+
         }
         else if(hex_mem == "8B"){// ADC E
         }
@@ -323,18 +350,32 @@ void runprogram(int loc){
         else if(hex_mem == "8F"){// ADC A
         }
         else if(hex_mem == "90"){// SUB B
+            reg[0]=reg[0]-reg[1];
+            change_flag();
         }
         else if(hex_mem == "91"){// SUB C
+            reg[0]=reg[0]-reg[2];
+            change_flag();
         }
         else if(hex_mem == "92"){// SUB D
+            reg[0]=reg[0]-reg[3];
+            change_flag();
         }
         else if(hex_mem == "93"){// SUB E
+            reg[0]=reg[0]-reg[4];
+            change_flag();
         }
         else if(hex_mem == "94"){// SUB H
+            reg[0]=reg[0]-reg[5];
+            change_flag();
         }
         else if(hex_mem == "95"){// SUB L
+            reg[0]=reg[0]-reg[6];
+            change_flag();
         }
         else if(hex_mem == "96"){// SUB M
+            reg[0]=reg[0]-get_M();
+            change_flag();
         }
         else if(hex_mem == "97"){// SUB A
         }
