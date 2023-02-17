@@ -78,9 +78,19 @@ short get_reg(char r='A'){
 
 }
 
+string getPointer(){
+    //returns the address of HL pointer
+    return decToHex(get_reg('H')) + decToHex(get_reg('L'));
+}
+
 short get_M(){
     string HLpointer =decToHex(get_reg('H')) + decToHex(get_reg('L'));
     return mem(HLpointer);
+}
+
+void put_M(short val){
+    //adds the given value to the memory at HL;
+    memory[hexToDec(getPointer())] = val;
 }
 
 string increaseHexByOne(string hex){
@@ -127,7 +137,7 @@ void runprogram(int loc){
             reg[1]=reg[6];
         }
         else if(hex_mem == "46"){//MOV B,M
-            
+            reg[1] = get_M();
         }
         else if(hex_mem == "47"){//MOV B,A
             reg[1]=reg[0];
@@ -148,7 +158,7 @@ void runprogram(int loc){
             reg[2]=reg[6];
         }
         else if(hex_mem == "4E"){//MOV C,M
-            
+            reg[2] = get_M();
         }
         else if(hex_mem == "4F"){//MOV C,A
             reg[2]=reg[0];
@@ -169,7 +179,7 @@ void runprogram(int loc){
             reg[3]=reg[6];
         }
         else if(hex_mem == "56"){//MOV D,M
-            
+            reg[3] = get_M();
         }
         else if(hex_mem == "57"){//MOV D,A
             reg[3]=reg[0];
@@ -190,7 +200,7 @@ void runprogram(int loc){
             reg[4]=reg[6];
         }
         else if(hex_mem == "5E"){//MOV E,M
-            
+            reg[4] = get_M();
         }
         else if(hex_mem == "5F"){//MOV E,A
             reg[4]=reg[0];
@@ -211,7 +221,7 @@ void runprogram(int loc){
             reg[5]=reg[6];
         }
         else if(hex_mem == "66"){//MOV H,M
-            
+            reg[5] = get_M();
         }
         else if(hex_mem == "67"){//MOV H,A
             reg[5]=reg[0];
@@ -232,31 +242,31 @@ void runprogram(int loc){
             reg[6]=reg[5];
         }
         else if(hex_mem == "6E"){//MOV L,M
-
+            reg[6] = get_M();
         }
         else if(hex_mem == "6F"){//MOV L,A
             reg[6]=reg[0];
         }
         else if(hex_mem == "70"){//MOV M,B
-
+            put_M(reg[1]);
         }
         else if(hex_mem == "71"){//MOV M,C
-
+            put_M(reg[2]);
         }
         else if(hex_mem == "72"){//MOV M,D
-            
+            put_M(reg[3]);
         }
         else if(hex_mem == "73"){//MOV M,E
-
+            put_M(reg[4]);
         }
         else if(hex_mem == "74"){//MOV M,H
-
+            put_M(reg[5]);
         }
         else if(hex_mem == "75"){//MOV M,L
-
+            put_M(reg[6]);
         }
         else if(hex_mem == "77"){//MOV M,A
-
+            put_M(reg[0]);
         }
         else if(hex_mem == "78"){// Mov A,B
             reg[0]=reg[1];
@@ -277,7 +287,7 @@ void runprogram(int loc){
             reg[0]=reg[6];
         }
         else if(hex_mem == "7E"){//MOV A,M
-
+            reg[0] = get_M();
         }
         else if(hex_mem == "80"){// ADD B
         }
