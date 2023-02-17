@@ -123,15 +123,15 @@ int parity(int num){
     int count=0;
     while(num!=0){
       count++;
-      num=num&(num - 1);
-   }
-   if(count % 2 == 0){
-      return 1;
-   } 
-   else {
-      return 0;
-   }
-   return 0;
+      num=num&(num-1);
+    }
+    if(count % 2 == 0){
+      return 1;//the parity is even
+    } 
+    else {
+        return 0;//the parity is odd
+    }
+    return 0;
 }
 
 void change_flag(){
@@ -146,6 +146,12 @@ void change_flag(){
     }
     else{
         F[1] = '0';
+    }
+    if(parity(reg[0])){
+        F[5] = '1';
+    }
+    else{
+        F[5] = '0';
     }
 }
 
