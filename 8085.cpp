@@ -550,7 +550,12 @@ int main(){
                         }
                         else{
                             int dec_loc = hexToDec(loc);
-                            string val = ""+cond[l-2]+cond[l-1];
+                            vector<char>  v;
+                            v.push_back(cond[cond.size()-1]);
+                            v.push_back(cond[cond.size()-2]);
+                            string val="  ";
+                            val[0]=v[1];
+                            val[1]=v[0];
                             memory[dec_loc]=hexToDec(val);
                         }
                         loc = increaseHexByOne(loc);
