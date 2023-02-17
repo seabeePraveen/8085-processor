@@ -119,6 +119,21 @@ bool check_flag(int opcode){
     return true;
 }
 
+int parity(int num){
+    int count=0;
+    while(num!=0){
+      count++;
+      num=num&(num - 1);
+   }
+   if(count % 2 == 0){
+      return 1;
+   } 
+   else {
+      return 0;
+   }
+   return 0;
+}
+
 void change_flag(){
     if(reg[0] < 0){// To check is less than negitive or not
         F[0] = '1';
