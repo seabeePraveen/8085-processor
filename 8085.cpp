@@ -115,6 +115,7 @@ string increaseHexByOne(string hex){
 }
 
 void runprogram(int loc){
+    cout<<"EXECUTING"<<endl;
     int ef = hexToDec("EF");
     while(memory[loc]!=ef){
         string hex_mem = decToHex(memory[loc]);
@@ -419,7 +420,6 @@ int main(){
                 }
             }
             else if(in=='G' || in=='g'){
-                cout<<"Location:";
                 string loc;
                 cin>>loc;
                 runprogram(hexToDec(loc));
