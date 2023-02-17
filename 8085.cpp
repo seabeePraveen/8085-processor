@@ -119,7 +119,18 @@ bool check_flag(int opcode){
 }
 
 void change_flag(){
-
+    if(reg[0] == 0){// To check is zero or not
+        F[7] = '1';
+    }
+    else{
+        F[7] = '0';
+    }
+    if(reg[0] < 0){// To check is less than negitive or not
+        F[0] = '1';
+    } 
+    else{
+        F[0] = '0';
+    }
 }
 
 void runprogram(int loc){
