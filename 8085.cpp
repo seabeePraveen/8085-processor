@@ -116,7 +116,7 @@ string increaseHexByOne(string hex){
 }
 
 bool check_flag(int opcode){
-
+    return true;
 }
 
 void change_flag(){
