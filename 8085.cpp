@@ -7,6 +7,7 @@ short memory[65536];
 short reg[7];
 short M;
 string F="00000000";
+// sign zero - ac - parity - carry
 
 int hexToDec(string hex){
     int dec = 0;
@@ -120,10 +121,10 @@ bool check_flag(int opcode){
 
 void change_flag(){
     if(reg[0] == 0){// To check is zero or not
-        F[7] = '1';
+        F[1] = '1';
     }
     else{
-        F[7] = '0';
+        F[1] = '0';
     }
     if(reg[0] < 0){// To check is less than negitive or not
         F[0] = '1';
