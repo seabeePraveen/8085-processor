@@ -26,6 +26,29 @@ int hexToDec(string hex){
     return dec;
 }
 
+string decToHex(int dec){
+    string hex = "";
+    int remainder;
+    if(dec == 0)
+        return "00";
+    while (dec > 0) {
+        remainder = dec % 16;
+        if(remainder < 10){
+            hex = char(remainder + 48) + hex;
+        }
+        else{
+            hex = char(remainder + 55) + hex;
+        }
+        dec /= 16;
+    }
+    return hex;
+}
+
+int mem(string loc){
+    int decloc = hexToDec(loc);
+    return memory[decloc];
+}
+
 short get_reg(char r='A'){
     if(r == 'A'){
         return reg[0];
@@ -55,20 +78,9 @@ short get_reg(char r='A'){
 
 }
 
-string decToHex(int dec){
-    string hex = "";
-    int remainder;
-    while (dec > 0) {
-        remainder = dec % 16;
-        if(remainder < 10){
-            hex = char(remainder + 48) + hex;
-        }
-        else{
-            hex = char(remainder + 55) + hex;
-        }
-        dec /= 16;
-    }
-    return hex;
+short get_M(){
+    string HLpointer =decToHex(get_reg('H')) + decToHex(get_reg('L'));
+    return mem(HLpointer);
 }
 
 string increaseHexByOne(string hex){
@@ -90,11 +102,6 @@ string increaseHexByOne(string hex){
         throw 103;
     }
     return result;
-}
-
-int mem(string loc){
-    int decloc = hexToDec(loc);
-    return memory[decloc];
 }
 
 void runprogram(int loc){
@@ -349,12 +356,7 @@ int main(){
                 getline(cin,cond);// to flush the std input
                 while(cond!="$"){
                     cout<<"M"<<loc<<":";
-                    if(mem(loc)==0){
-                        cout<<"00"<<"-";
-                    }
-                    else{
-                        cout<<decToHex(mem(loc))<<"-";
-                    }
+                    cout<<decToHex(mem(loc))<<"-";
                     getline(cin,cond);
                     if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
                         loc=increaseHexByOne(loc);
@@ -381,12 +383,7 @@ int main(){
                 getline(cin,cond);//to flush the std input
                 while(i < 7){
                     cout<<registe[i]<<":";
-                    if(get_reg(registe[i])==0){
-                        cout<<"00"<<"-";
-                    }
-                    else{
-                        cout<<decToHex(get_reg(registe[i]))<<"-";
-                    }
+                    cout<<decToHex(get_reg(registe[i]))<<"-";
                     getline(cin,cond);
                     if(cond != "$"){
                         int l = cond.size();
@@ -416,6 +413,9 @@ int main(){
                 string loc;
                 cin>>loc;
                 runprogram(hexToDec(loc));
+            }
+            else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
+                get_M();
             }
         }
         catch(int errorCode){
