@@ -139,8 +139,125 @@ void runprogram(int loc){
     int ef = hexToDec("EF");
     while(memory[loc]!=ef){
         string hex_mem = decToHex(memory[loc]);
-        // NOP - No Operation
         if(hex_mem == "00"){// NOP
+        }
+        else if(hex_mem == "01"){// LXI B, data16 - Load 16-bit immediate data into registers B and C
+        }
+        else if(hex_mem == "02"){// STAX B - Store accumulator indirect
+        }
+        else if(hex_mem == "03"){// INX B - Increment registers B and C
+        }
+        else if(hex_mem == "04"){// INR B - Increment register B
+        }
+        else if(hex_mem == "05"){// DCR B - Decrement register B
+        }
+        else if(hex_mem == "06"){// MVI B, data8 - Move immediate 8-bit data into register B
+        }
+        else if(hex_mem == "07"){ // RLC - Rotate accumulator left
+        }
+        else if(hex_mem == "09"){// DAD B - Double add registers B and C to HL
+        }
+        else if(hex_mem == "0A"){// LDAX B - Load accumulator indirect
+        }
+        else if(hex_mem == "0B"){// DCX B - Decrement registers B and C
+        }
+        else if(hex_mem == "0C"){// INR C - Increment register C
+        }
+        else if(hex_mem == "0D"){// DCR C - Decrement register C
+        }
+        else if(hex_mem == "0E"){// MVI C, data8 - Move immediate 8-bit data into register C
+        }
+        else if(hex_mem == "0F"){// RRC - Rotate accumulator right
+        }
+        else if(hex_mem == "11"){// LXI D, data16 - Load 16-bit immediate data into registers D and E
+        }
+        else if(hex_mem == "12"){// STAX D - Store accumulator indirect
+        }
+        else if(hex_mem == "13"){// INX D - Increment registers D and E
+        }
+        else if(hex_mem == "14"){// INR D - Increment register D
+        }
+        else if(hex_mem == "15"){// DCR D - Decrement register D
+        }
+        else if(hex_mem == "16"){// MVI D, data8 - Move immediate 8-bit data into register D
+        }
+        else if(hex_mem == "17"){// RAL - Rotate accumulator left through carry
+        }
+        else if(hex_mem == "19"){// DAD D - Double add registers D and E to HL
+        }
+        else if(hex_mem == "1A"){// LDAX D - Load accumulator indirect
+        }
+        else if(hex_mem == "1B"){// DCX D - Decrement registers D and E
+        }
+        else if(hex_mem == "1C"){// INR E - Increment register E
+        }
+        else if(hex_mem == "1D"){// DCR E - Decrement register E
+        }
+        else if(hex_mem == "1E"){// MVI E, data8 - Move immediate 8-bit data into register E
+        }
+        else if(hex_mem == "1F"){// RAR - Rotate accumulator right through carry
+        }
+        else if(hex_mem == "20"){// RIM - Read interrupt mask
+        }
+        else if(hex_mem == "21"){// LXI H, data16 - Load 16-bit immediate data into registers H and L
+        }
+        else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
+        }
+        else if(hex_mem == "23"){// INX H - Increment registers H and L
+        }
+        else if(hex_mem == "24"){// INR H - Increment register H
+        }
+        else if(hex_mem == "25"){// DCR H - Decrement register H
+        }
+        else if(hex_mem == "26"){// MVI H, data8 - Move immediate 8-bit data into register H
+        }
+        else if(hex_mem == "27"){// DAA - Decimal adjust accumulator
+        }
+        else if(hex_mem == "29"){// DAD H - Double add registers H and L to HL
+        }
+        else if(hex_mem == "2A"){// LHLD address - Load H and L registers direct
+        }
+        else if(hex_mem == "2B"){// DCX H - Decrement registers H and L
+        }
+        else if(hex_mem == "2C"){// INR L - Increment register L
+        }
+        else if(hex_mem == "2D"){// DCR L - Decrement register L
+        }
+        else if(hex_mem == "2E"){// MVI L, data8 - Move immediate 8-bit data into register L
+        }
+        else if(hex_mem == "2F"){// CMA - Complement accumulator
+        }
+        else if(hex_mem == "30"){// SIM - Set interrupt mask
+        }
+        else if(hex_mem == "31"){// LXI SP, data16 - Load 16-bit immediate data into stack pointer
+        }
+        else if(hex_mem == "32"){// STA address - Store accumulator direct
+        }
+        else if(hex_mem == "33"){// INX SP - Increment stack pointer
+        }
+        else if(hex_mem == "34"){// INR M - Increment memory pointed by HL
+        }
+        else if(hex_mem == "35"){// DCR M - Decrement memory pointed by HL
+        }
+        else if(hex_mem == "36"){// MVI M, data8 - Move immediate 8-bit data into memory pointed by HL
+        }
+        else if(hex_mem == "37"){// STC - Set carry
+        }
+        else if(hex_mem == "39"){// DAD SP - Double add stack pointer to HL
+        }
+        else if(hex_mem == "3A"){// LDA address - Load accumulator direct
+        }
+        else if(hex_mem == "3B"){// DCX SP - Decrement stack pointer
+        }
+        else if(hex_mem == "3C"){// INR A - Increment accumulator
+        }
+        else if(hex_mem == "3D"){// DCR A - Decrement accumulator
+        }
+        else if(hex_mem == "3E"){// MVI A, data8 - Move immediate 8-bit data into accumulator
+        }
+        else if(hex_mem == "3F"){// CMC - Complement carry
+        }
+        else if(hex_mem == "40"){// MOV B,B - Move register B to register B (no operation)
         }
         else if(hex_mem == "41"){//MOV B,C
             reg[1]=reg[2];
