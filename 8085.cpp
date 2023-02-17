@@ -148,8 +148,10 @@ void runprogram(int loc){
         else if(hex_mem == "03"){// INX B - Increment registers B and C
         }
         else if(hex_mem == "04"){// INR B - Increment register B
+            reg[1]++;
         }
         else if(hex_mem == "05"){// DCR B - Decrement register B
+            reg[1]--;
         }
         else if(hex_mem == "06"){// MVI B, data8 - Move immediate 8-bit data into register B
         }
@@ -162,8 +164,10 @@ void runprogram(int loc){
         else if(hex_mem == "0B"){// DCX B - Decrement registers B and C
         }
         else if(hex_mem == "0C"){// INR C - Increment register C
+            reg[2]++;
         }
         else if(hex_mem == "0D"){// DCR C - Decrement register C
+            reg[2]--;
         }
         else if(hex_mem == "0E"){// MVI C, data8 - Move immediate 8-bit data into register C
         }
@@ -176,8 +180,10 @@ void runprogram(int loc){
         else if(hex_mem == "13"){// INX D - Increment registers D and E
         }
         else if(hex_mem == "14"){// INR D - Increment register D
+            reg[3]++;
         }
         else if(hex_mem == "15"){// DCR D - Decrement register D
+            reg[3]--;
         }
         else if(hex_mem == "16"){// MVI D, data8 - Move immediate 8-bit data into register D
         }
@@ -190,8 +196,10 @@ void runprogram(int loc){
         else if(hex_mem == "1B"){// DCX D - Decrement registers D and E
         }
         else if(hex_mem == "1C"){// INR E - Increment register E
+            reg[4]++;
         }
         else if(hex_mem == "1D"){// DCR E - Decrement register E
+            reg[4]--;
         }
         else if(hex_mem == "1E"){// MVI E, data8 - Move immediate 8-bit data into register E
         }
@@ -206,8 +214,10 @@ void runprogram(int loc){
         else if(hex_mem == "23"){// INX H - Increment registers H and L
         }
         else if(hex_mem == "24"){// INR H - Increment register H
+            reg[5]++;
         }
         else if(hex_mem == "25"){// DCR H - Decrement register H
+            reg[5]--;
         }
         else if(hex_mem == "26"){// MVI H, data8 - Move immediate 8-bit data into register H
         }
@@ -220,8 +230,10 @@ void runprogram(int loc){
         else if(hex_mem == "2B"){// DCX H - Decrement registers H and L
         }
         else if(hex_mem == "2C"){// INR L - Increment register L
+            reg[6]++;
         }
         else if(hex_mem == "2D"){// DCR L - Decrement register L
+            reg[6]--;
         }
         else if(hex_mem == "2E"){// MVI L, data8 - Move immediate 8-bit data into register L
         }
@@ -250,8 +262,12 @@ void runprogram(int loc){
         else if(hex_mem == "3B"){// DCX SP - Decrement stack pointer
         }
         else if(hex_mem == "3C"){// INR A - Increment accumulator
+            reg[0]++;
+            change_flag();
         }
         else if(hex_mem == "3D"){// DCR A - Decrement accumulator
+            reg[0]--;
+            change_flag();
         }
         else if(hex_mem == "3E"){// MVI A, data8 - Move immediate 8-bit data into accumulator
         }
