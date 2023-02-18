@@ -367,19 +367,15 @@ void runprogram(int loc){
         }
         else if(hex_mem == "34"){// INR M - Increment memory pointed by HL
             string s = decToHex(reg[5])+decToHex(reg[6]);
-            s = increaseHexByOne(s);
-            string s1 = "  ";
-            s1[0]=s[0];
-            s1[1]=s[1];
-            reg[5]=hexToDec(s1);
-            string s2 = "  ";
-            s2[0]=s[2];
-            s2[1]=s[3];
-            reg[6]=hexToDec(s2);
+            memory[hexToDec(s)]++;
         }
         else if(hex_mem == "35"){// DCR M - Decrement memory pointed by HL
         }
         else if(hex_mem == "36"){// MVI M, data8 - Move immediate 8-bit data into memory pointed by HL
+            loc++;
+            int x = memory[loc];
+            string s = decToHex(reg[5])+decToHex(reg[6]);
+            memory[hexToDec(s)]=x;
         }
         else if(hex_mem == "37"){// STC - Set carry
         }
@@ -402,6 +398,12 @@ void runprogram(int loc){
             reg[0]=memory[loc];
         }
         else if(hex_mem == "3F"){// CMC - Complement carry
+            if(F[7]== '1'){
+                F[7]='0';
+            }
+            else{
+                F[7]='1';
+            }
         }
         else if(hex_mem == "41"){//MOV B,C
             reg[1]=reg[2];
