@@ -115,6 +115,20 @@ string increaseHexByOne(string hex){
     return result;
 }
 
+string decreaseHex(string hexNumber) {
+    int len = hexNumber.length();
+    int i = len - 1;
+    while(i>=0 && hexNumber[i] == '0'){
+        hexNumber[i] = 'f';
+        i--;
+    }
+    if(i>=0){
+        hexNumber[i] = char(hexNumber[i] - 1);
+    }
+    return hexNumber;
+}
+
+
 bool check_flag(int opcode){
     return true;
 }
@@ -134,20 +148,20 @@ int parity(int num){
     return 0;
 }
 
-void change_flag(){
-    if(reg[0] < 0){// To check is less than negitive or not
+void change_flag(int val){
+    if(val < 0){// To check is less than negitive or not
         F[0] = '1';
     } 
     else{
         F[0] = '0';
     }
-    if(reg[0] == 0){// To check is zero or not
+    if(val == 0){// To check is zero or not
         F[1] = '1';
     }
     else{
         F[1] = '0';
     }
-    if(parity(reg[0])){
+    if(parity(val)){
         F[5] = '1';
     }
     else{
@@ -200,6 +214,16 @@ void runprogram(int loc){
         else if(hex_mem == "A"){// LDAX B - Load accumulator indirect
         }
         else if(hex_mem == "B"){// DCX B - Decrement registers B and C
+            string s = decToHex(reg[1])+decToHex(reg[2]);
+            s = decreaseHex(s);
+            string s1 = "  ";
+            s1[0]=s[0];
+            s1[1]=s[1];
+            reg[1]=hexToDec(s1);
+            string s2 = "  ";
+            s2[0]=s[2];
+            s2[1]=s[3];
+            reg[2]=hexToDec(s2);
         }
         else if(hex_mem == "C"){// INR C - Increment register C
             reg[2]++;
@@ -250,6 +274,16 @@ void runprogram(int loc){
         else if(hex_mem == "1A"){// LDAX D - Load accumulator indirect
         }
         else if(hex_mem == "1B"){// DCX D - Decrement registers D and E
+            string s = decToHex(reg[3])+decToHex(reg[4]);
+            s = decreaseHex(s);
+            string s1 = "  ";
+            s1[0]=s[0];
+            s1[1]=s[1];
+            reg[3]=hexToDec(s1);
+            string s2 = "  ";
+            s2[0]=s[2];
+            s2[1]=s[3];
+            reg[4]=hexToDec(s2);
         }
         else if(hex_mem == "1C"){// INR E - Increment register E
             reg[4]++;
@@ -302,6 +336,16 @@ void runprogram(int loc){
         else if(hex_mem == "2A"){// LHLD address - Load H and L registers direct
         }
         else if(hex_mem == "2B"){// DCX H - Decrement registers H and L
+            string s = decToHex(reg[5])+decToHex(reg[6]);
+            s = decreaseHex(s);
+            string s1 = "  ";
+            s1[0]=s[0];
+            s1[1]=s[1];
+            reg[5]=hexToDec(s1);
+            string s2 = "  ";
+            s2[0]=s[2];
+            s2[1]=s[3];
+            reg[6]=hexToDec(s2);
         }
         else if(hex_mem == "2C"){// INR L - Increment register L
             reg[6]++;
@@ -347,11 +391,11 @@ void runprogram(int loc){
         }
         else if(hex_mem == "3C"){// INR A - Increment accumulator
             reg[0]++;
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "3D"){// DCR A - Decrement accumulator
             reg[0]--;
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "3E"){// MVI A, data8 - Move immediate 8-bit data into accumulator
             loc++;
@@ -529,35 +573,35 @@ void runprogram(int loc){
         }
         else if(hex_mem == "80"){// ADD B
             reg[0]=reg[0]+reg[1];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "81"){// ADD C
             reg[0]=reg[0]+reg[2];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "82"){// ADD D
             reg[0]=reg[0]+reg[3];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "83"){// ADD E
             reg[0]=reg[0]+reg[4];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "84"){// ADD H
             reg[0]=reg[0]+reg[5];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "85"){// ADD L
             reg[0]=reg[0]+reg[6];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "86"){// ADD M
             reg[0]=reg[0]+get_M();
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "87"){// ADD A
             reg[0]=reg[0]+reg[0];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "88"){// ADC B
 
@@ -580,35 +624,35 @@ void runprogram(int loc){
         }
         else if(hex_mem == "90"){// SUB B
             reg[0]=reg[0]-reg[1];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "91"){// SUB C
             reg[0]=reg[0]-reg[2];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "92"){// SUB D
             reg[0]=reg[0]-reg[3];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "93"){// SUB E
             reg[0]=reg[0]-reg[4];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "94"){// SUB H
             reg[0]=reg[0]-reg[5];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "95"){// SUB L
             reg[0]=reg[0]-reg[6];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "96"){// SUB M
             reg[0]=reg[0]-get_M();
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "97"){// SUB A
             reg[0]=reg[0]-reg[0];
-            change_flag();
+            change_flag(reg[0]);
         }
         else if(hex_mem == "98"){// SBB B
         }
