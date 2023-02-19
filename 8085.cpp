@@ -195,13 +195,15 @@ void runprogram(int loc){
             string s2 = "  ";
             s2[0]=s[2];
             s2[1]=s[3];
-            reg[2]=hexToDec(s2);
+            reg[2]=hexToDec(s2);//Flag doesnot change
         }
         else if(hex_mem == "4"){// INR B - Increment register B
             reg[1]++;
+            change_flag(reg[1]);
         }
         else if(hex_mem == "5"){// DCR B - Decrement register B
             reg[1]--;
+            change_flag(reg[1]);
         }
         else if(hex_mem == "6"){// MVI B, data8 - Move immediate 8-bit data into register B
             loc++;
@@ -227,9 +229,11 @@ void runprogram(int loc){
         }
         else if(hex_mem == "C"){// INR C - Increment register C
             reg[2]++;
+            change_flag(reg[2]);
         }
         else if(hex_mem == "D"){// DCR C - Decrement register C
             reg[2]--;
+            change_flag(reg[2]);
         }
         else if(hex_mem == "E"){// MVI C, data8 - Move immediate 8-bit data into register C
             loc++;
@@ -259,9 +263,11 @@ void runprogram(int loc){
         }
         else if(hex_mem == "14"){// INR D - Increment register D
             reg[3]++;
+            change_flag(reg[3]);
         }
         else if(hex_mem == "15"){// DCR D - Decrement register D
             reg[3]--;
+            change_flag(reg[3]);
         }
         else if(hex_mem == "16"){// MVI D, data8 - Move immediate 8-bit data into register D
             loc++;
@@ -287,9 +293,11 @@ void runprogram(int loc){
         }
         else if(hex_mem == "1C"){// INR E - Increment register E
             reg[4]++;
+            change_flag(reg[4]);
         }
         else if(hex_mem == "1D"){// DCR E - Decrement register E
             reg[4]--;
+            change_flag(reg[4]);
         }
         else if(hex_mem == "1E"){// MVI E, data8 - Move immediate 8-bit data into register E
             loc++;
@@ -321,9 +329,11 @@ void runprogram(int loc){
         }
         else if(hex_mem == "24"){// INR H - Increment register H
             reg[5]++;
+            change_flag(reg[5]);
         }
         else if(hex_mem == "25"){// DCR H - Decrement register H
             reg[5]--;
+            change_flag(reg[5]);
         }
         else if(hex_mem == "26"){// MVI H, data8 - Move immediate 8-bit data into register H
             loc++;
@@ -349,9 +359,11 @@ void runprogram(int loc){
         }
         else if(hex_mem == "2C"){// INR L - Increment register L
             reg[6]++;
+            change_flag(reg[6]);
         }
         else if(hex_mem == "2D"){// DCR L - Decrement register L
             reg[6]--;
+            change_flag(reg[6]);
         }
         else if(hex_mem == "2E"){// MVI L, data8 - Move immediate 8-bit data into register L
         }
