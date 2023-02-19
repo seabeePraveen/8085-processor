@@ -85,7 +85,13 @@ string getPointer(){
 }
 
 short get_M(){
-    string HLpointer = decToHex(get_reg('H')) + decToHex(get_reg('L'));
+    string HLpointer = "    ";
+    string s1 = decToHex(get_reg('H'));
+    string s2 = decToHex(get_reg('L'));
+    HLpointer[0]=s1[0];
+    HLpointer[1]=s1[1];
+    HLpointer[2]=s2[0];
+    HLpointer[3]=s2[1];
     return mem(HLpointer);
 }
 
@@ -339,7 +345,7 @@ void runprogram(int loc){
             loc++;
             reg[5]=memory[loc];
         }
-        else if(hex_mem == "27"){// DAA - Decimal adjust accumulator
+        else if(hex_mem == "27"){// DAA - Decimal adjust accumulator 
         }
         else if(hex_mem == "29"){// DAD H - Double add registers H and L to HL
         }
