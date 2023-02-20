@@ -30,8 +30,12 @@ int hexToDec(string hex){
 string decToHex(int dec){
     string hex = "";
     int remainder;
-    if(dec == 0)
-        return "00";
+    string alpha = "0123456789ABCDEF";
+    if(dec <= 15){
+        hex += "0";
+        hex += alpha[dec];
+        return hex;
+    }
     while (dec > 0) {
         remainder = dec % 16;
         if(remainder < 10){
@@ -772,7 +776,9 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                get_M();
+                for(int i=0;i<20;i++){
+                    cout<<decToHex(i)<<endl;
+                }
             }
         }
         catch(int errorCode){
