@@ -152,6 +152,10 @@ void cmp(int val){
     reg[0]= ~val;
 }
 
+void adc(int val){
+    reg[0]=reg[0]+val+
+}
+
 int parity(int num){
     int count=0;
     while(num!=0){
@@ -702,23 +706,36 @@ EIGHT:
             change_flag(reg[0]);
         }
         else if(hex_mem == "88"){// ADC B
-
+            reg[0]+=reg[1]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "89"){// ADC C
-
+            reg[0]+=reg[2]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8A"){// ADC D
-
+            reg[0]+=reg[3]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8B"){// ADC E
+            reg[0]+=reg[4]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8C"){// ADC H
+            reg[0]+=reg[5]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8D"){// ADC L
+            reg[0]+=reg[6]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8E"){// ADC M
+            reg[0]+=get_M()+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8F"){// ADC A
+            reg[0]+=reg[0]+int(F[7]);
+            change_flag(reg[0]);
         }
         goto END;
 NINE:
