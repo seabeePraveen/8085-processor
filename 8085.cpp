@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #include<stdlib.h>
+#include <bitset>
 #include<string>
 #include<math.h>
 using namespace std;
@@ -9,6 +10,11 @@ short reg[7];
 short M;
 string F="00000000";
 // sign zero - ac - parity - carry
+
+int binToDec(string binary) {
+    int decimal = bitset<8>(binary).to_ulong();
+    return decimal;
+}
 
 int hexToDec(string hex){
     int dec = 0;
@@ -76,6 +82,9 @@ short get_reg(char r='A'){
     }
     else if(r == 'L'){
         return reg[6];
+    }
+    else if(r=='F'){
+        return binToDec(F);
     }
     else{
         throw 101;
@@ -1042,9 +1051,9 @@ int main(){
             else if(in=='R' || in=='r'){
                 int i=0;
                 string cond;
-                string registe = "ABCDEHL";
+                string registe = "ABCDEHLF";
                 getline(cin,cond);//to flush the std input
-                while(i < 7){
+                while(i < 8){
                     cout<<registe[i]<<":";
                     cout<<decToHex(get_reg(registe[i]))<<"-";
                     getline(cin,cond);
@@ -1079,7 +1088,7 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                //
+                cout<<decToHex(binToDec(F));
             }
         }
         catch(int errorCode){
