@@ -265,7 +265,8 @@ ZERO:
             reg[1]=memory[loc];
         }
         else if(hex_mem == "02"){// STAX B - Store accumulator indirect
-
+            string s = decToHex(reg[1])+decToHex(reg[2]);
+            memory[hexToDec(s)]=reg[0];
         }
         else if(hex_mem == "03"){// INX B - Increment registers B and C
             string s = decToHex(reg[1])+decToHex(reg[2]);
@@ -298,6 +299,8 @@ ZERO:
 
         }
         else if(hex_mem == "0A"){// LDAX B - Load accumulator indirect
+            string s = decToHex(reg[1])+decToHex(reg[2]);
+            reg[0]=mem(s);
         }
         else if(hex_mem == "0B"){// DCX B - Decrement registers B and C
             string s = decToHex(reg[1])+decToHex(reg[2]);
@@ -334,6 +337,8 @@ ONE:
             reg[3]=memory[loc];
         }
         else if(hex_mem == "12"){// STAX D - Store accumulator indirect
+            string s = decToHex(reg[3])+decToHex(reg[4]);
+            memory[hexToDec(s)]=reg[0];
         }
         else if(hex_mem == "13"){// INX D - Increment registers D and E
             string s = decToHex(reg[3])+decToHex(reg[4]);
@@ -364,6 +369,8 @@ ONE:
         else if(hex_mem == "19"){// DAD D - Double add registers D and E to HL
         }
         else if(hex_mem == "1A"){// LDAX D - Load accumulator indirect
+            string s = decToHex(reg[3])+decToHex(reg[4]);
+            reg[0]=mem(s);
         }
         else if(hex_mem == "1B"){// DCX D - Decrement registers D and E
             string s = decToHex(reg[3])+decToHex(reg[4]);
@@ -397,11 +404,15 @@ TWO:
         }
         else if(hex_mem == "21"){// LXI H, data16 - Load 16-bit immediate data into registers H and L
             loc++;
+            memory[loc]=reg[6];
+            loc++;
+            memory[loc]=reg[5];
+        }
+        else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
+            loc++;
             reg[6]=memory[loc];
             loc++;
             reg[5]=memory[loc];
-        }
-        else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
         }
         else if(hex_mem == "23"){// INX H - Increment registers H and L
             string s = decToHex(reg[5])+decToHex(reg[6]);
@@ -432,6 +443,10 @@ TWO:
         else if(hex_mem == "29"){// DAD H - Double add registers H and L to HL
         }
         else if(hex_mem == "2A"){// LHLD address - Load H and L registers direct
+            loc++;
+            reg[6]=memory[loc];
+            loc++;
+            reg[5]=memory[loc];
         }
         else if(hex_mem == "2B"){// DCX H - Decrement registers H and L
             string s = decToHex(reg[5])+decToHex(reg[6]);
