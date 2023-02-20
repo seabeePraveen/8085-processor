@@ -143,6 +143,14 @@ bool check_flag(int opcode){
     return true;
 }
 
+void xra(int val){
+    reg[0]=reg[0]^val;
+}
+
+void cmp(int val){
+    reg[0]= ~val;
+}
+
 int parity(int num){
     int count=0;
     while(num!=0){
@@ -220,8 +228,10 @@ void runprogram(int loc){
             reg[1]=memory[loc];
         }
         else if(hex_mem == "07"){ // RLC - Rotate accumulator left
+
         }
         else if(hex_mem == "09"){// DAD B - Double add registers B and C to HL
+
         }
         else if(hex_mem == "0A"){// LDAX B - Load accumulator indirect
         }
@@ -715,20 +725,28 @@ void runprogram(int loc){
         else if(hex_mem == "A7"){// ANA A
         }
         else if(hex_mem == "A8"){// XRA B
+            xra(reg[1]);
         }
         else if(hex_mem == "A9"){// XRA C
+            xra(reg[2]);
         }
         else if(hex_mem == "AA"){// XRA D
+            xra(reg[3]);
         }
         else if(hex_mem == "AB"){// XRA E
+            xra(reg[4]);
         }
         else if(hex_mem == "AC"){// XRA H
+            xra(reg[5]);
         }
         else if(hex_mem == "AD"){// XRA L
+            xra(reg[6]);
         }
         else if(hex_mem == "AE"){// XRA M
+            xra(get_M());
         }
         else if(hex_mem == "AF"){// XRA A
+            xra(reg[0]);
         }
         else if(hex_mem == "B0"){// ORA B
         }
@@ -747,6 +765,7 @@ void runprogram(int loc){
         else if(hex_mem == "B7"){// ORA A
         }
         else if(hex_mem == "B8"){// CMP B
+
         }
         else if(hex_mem == "B9"){// CMP C
         }
