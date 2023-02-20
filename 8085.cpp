@@ -702,7 +702,6 @@ EIGHT:
             change_flag(reg[0]);
         }
         else if(hex_mem == "88"){// ADC B
-
         }
         else if(hex_mem == "89"){// ADC C
 
@@ -790,53 +789,69 @@ A:
         }
         else if(hex_mem == "A8"){// XRA B
             xra(reg[1]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A9"){// XRA C
             xra(reg[2]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AA"){// XRA D
             xra(reg[3]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AB"){// XRA E
             xra(reg[4]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AC"){// XRA H
             xra(reg[5]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AD"){// XRA L
             xra(reg[6]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AE"){// XRA M
             xra(get_M());
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AF"){// XRA A
             xra(reg[0]);
+            change_flag(reg[0]);
         }
         goto END;
 B:
         if(hex_mem == "B0"){// ORA B
             ora(reg[1]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B1"){// ORA C
             ora(reg[2]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B2"){// ORA D
             ora(reg[3]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B3"){// ORA E
             ora(reg[4]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B4"){// ORA H
             ora(reg[5]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B5"){// ORA L
             ora(reg[6]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B6"){// ORA M
             ora(get_M());
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B7"){// ORA A
             ora(reg[0]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B8"){// CMP B
 
