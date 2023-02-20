@@ -217,7 +217,7 @@ void runprogram(int loc){
         }
         else if(hex_mem == "7"){ // RLC - Rotate accumulator left
         }
-        else if(hex_mem == "09"){// DAD B - Double add registers B and C to HL
+        else if(hex_mem == "9"){// DAD B - Double add registers B and C to HL
         }
         else if(hex_mem == "A"){// LDAX B - Load accumulator indirect
         }
@@ -372,6 +372,8 @@ void runprogram(int loc){
             change_flag(reg[6]);
         }
         else if(hex_mem == "2E"){// MVI L, data8 - Move immediate 8-bit data into register L
+            loc++;
+            reg[6]=memory[loc];
         }
         else if(hex_mem == "2F"){// CMA - Complement accumulator
         }
@@ -388,6 +390,8 @@ void runprogram(int loc){
             memory[hexToDec(s)]++;
         }
         else if(hex_mem == "35"){// DCR M - Decrement memory pointed by HL
+            string s = decToHex(reg[5])+decToHex(reg[6]);
+            memory[hexToDec(s)]--;
         }
         else if(hex_mem == "36"){// MVI M, data8 - Move immediate 8-bit data into memory pointed by HL
             loc++;
