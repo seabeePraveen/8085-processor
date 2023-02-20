@@ -771,7 +771,7 @@ EIGHT:
         }
         goto END;
 NINE:
-            if(hex_mem == "90"){// SUB B
+        if(hex_mem == "90"){// SUB B
             reg[0]=reg[0]-reg[1];
             change_flag(reg[0]);
         }
@@ -966,6 +966,18 @@ C:
         else if(hex_mem == "C1"){// POP B
         } 
         else if(hex_mem == "C2"){// JNZ
+            if(int(F[1])==0){
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "C3"){// JMP
         }
@@ -981,7 +993,19 @@ C:
         }
         else if(hex_mem == "C9"){// RET
         }
-        else if(hex_mem == "CA"){// JZ
+        else if(hex_mem == "CA"){// JZ Address
+            if(int(F[1])){
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "CC"){// CZ
         }
@@ -998,6 +1022,18 @@ D:
         else if(hex_mem == "D1"){// POP D
         }
         else if(hex_mem == "D2"){// JNC
+            if(int(F[7])==1){
+                loc++;
+                loc++;
+            }
+            else{
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
         }
         else if(hex_mem == "D3"){// OUT
         }
@@ -1012,6 +1048,18 @@ D:
         else if(hex_mem == "D8"){// RC
         }
         else if(hex_mem == "DA"){// JC
+            if(int(F[7])==1){
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "DB"){// IN
         }
