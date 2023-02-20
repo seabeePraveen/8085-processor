@@ -424,9 +424,9 @@ TWO:
         }
         else if(hex_mem == "21"){// LXI H, data16 - Load 16-bit immediate data into registers H and L
             loc++;
-            memory[loc]=reg[6];
+            reg[6]=memory[loc];
             loc++;
-            memory[loc]=reg[5];
+            reg[5]=memory[loc];
         }
         else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
             loc++;
@@ -997,7 +997,7 @@ C:
             reg[1] = stPop();
         } 
         else if(hex_mem == "C2"){// JNZ
-            if(int(F[1])==0){
+            if(F[1]=='0'){
                 loc++;
                 string s2 = decToHex(loc);
                 loc++;
@@ -1272,7 +1272,7 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                cout<<decToHex(stPop())<<endl;
+                cout<<F<<endl;
             }
         }
         catch(int errorCode){
