@@ -1,10 +1,7 @@
 #include<bits/stdc++.h>
-#include<stdlib.h>
-#include <bitset>
-#include<string>
-#include<math.h>
 using namespace std;
 
+short SP = 65535; //stack pointer pre-defined value;
 short memory[65536];
 short reg[7];
 short M;
@@ -14,6 +11,11 @@ string F="00000000";
 int binToDec(string binary) {
     int decimal = bitset<8>(binary).to_ulong();
     return decimal;
+}
+
+string decToBin(int decimal) {
+    string binary = bitset<8>(decimal).to_string();
+    return binary;
 }
 
 int hexToDec(string hex){
@@ -32,6 +34,16 @@ int hexToDec(string hex){
         base *= 16;
     }
     return dec;
+}
+
+short stPop(){
+    //return and increase SP;
+    return memory[SP++];
+}
+
+void stPush(short val){
+    //decrease sp and insert;
+    memory[--SP] = val;
 }
 
 string decToHex(int dec){
@@ -926,6 +938,9 @@ C:
         if(hex_mem == "C0"){// RNZ
         }
         else if(hex_mem == "C1"){// POP B
+            //store intp C then B;
+            reg[2] = stPop();
+            reg[1] = stPop();
         } 
         else if(hex_mem == "C2"){// JNZ
         }
@@ -934,6 +949,9 @@ C:
         else if(hex_mem == "C4"){// CNZ
         }
         else if(hex_mem == "C5"){// PUSH B
+            //store value of B then C into the Stack
+            stPush(get_reg('B'));
+            stPush(get_reg('C'));
         }
         else if(hex_mem == "C6"){// ADI
         }
@@ -958,6 +976,8 @@ D:
         if(hex_mem == "D0"){// RNC
         }
         else if(hex_mem == "D1"){// POP D
+            reg[4] = stPop();
+            reg[3] = stPop();
         }
         else if(hex_mem == "D2"){// JNC
         }
@@ -966,6 +986,8 @@ D:
         else if(hex_mem == "D4"){// CNC
         }
         else if(hex_mem == "D5"){// PUSH D
+            stPush(get_reg('D'));
+            stPush(get_reg('E'));
         }
         else if(hex_mem == "D6"){// SUI
         }
@@ -988,6 +1010,8 @@ E:
         if(hex_mem == "E0"){// RPO
         }
         else if(hex_mem == "E1"){// POP H
+            reg[6] = stPop();
+            reg[5] = stPop();
         }
         else if(hex_mem == "E2"){// JPO
         }
@@ -996,6 +1020,8 @@ E:
         else if(hex_mem == "E4"){// CPO
         }
         else if(hex_mem == "E5"){// PUSH H
+            stPush(get_reg('H'));
+            stPush(get_reg('L'));
         }
         else if(hex_mem == "E6"){// ANI
         }
@@ -1020,6 +1046,7 @@ F:
         if(hex_mem == "F0"){// RP
         }
         else if(hex_mem == "F1"){// POP PSW
+            F = decToBin(stPop());
         }
         else if(hex_mem == "F2"){// JP
         }
@@ -1028,6 +1055,7 @@ F:
         else if(hex_mem == "F4"){// CP
         }
         else if(hex_mem == "F5"){// PUSH PSW
+            stPush(binToDec(F));
         }
         else if(hex_mem == "F6"){// ORI
         }
@@ -1138,7 +1166,7 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                cout<<decToHex(binToDec(F));
+                cout<<decToHex(stPop())<<endl;
             }
         }
         catch(int errorCode){
