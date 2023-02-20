@@ -186,16 +186,16 @@ void runprogram(int loc){
         string hex_mem = decToHex(memory[loc]);
         if(hex_mem == "00"){// NOP
         }
-        else if(hex_mem == "1"){// LXI B, data16 - Load 16-bit immediate data into registers B and C
+        else if(hex_mem == "01"){// LXI B, data16 - Load 16-bit immediate data into registers B and C
             loc++;
             reg[2]=memory[loc];
             loc++;
             reg[1]=memory[loc];
         }
-        else if(hex_mem == "2"){// STAX B - Store accumulator indirect
+        else if(hex_mem == "02"){// STAX B - Store accumulator indirect
 
         }
-        else if(hex_mem == "3"){// INX B - Increment registers B and C
+        else if(hex_mem == "03"){// INX B - Increment registers B and C
             string s = decToHex(reg[1])+decToHex(reg[2]);
             s = increaseHexByOne(s);
             string s1 = "  ";
@@ -207,25 +207,25 @@ void runprogram(int loc){
             s2[1]=s[3];
             reg[2]=hexToDec(s2);//Flag doesnot change
         }
-        else if(hex_mem == "4"){// INR B - Increment register B
+        else if(hex_mem == "04"){// INR B - Increment register B
             reg[1]++;
             change_flag(reg[1]);
         }
-        else if(hex_mem == "5"){// DCR B - Decrement register B
+        else if(hex_mem == "05"){// DCR B - Decrement register B
             reg[1]--;
             change_flag(reg[1]);
         }
-        else if(hex_mem == "6"){// MVI B, data8 - Move immediate 8-bit data into register B
+        else if(hex_mem == "06"){// MVI B, data8 - Move immediate 8-bit data into register B
             loc++;
             reg[1]=memory[loc];
         }
-        else if(hex_mem == "7"){ // RLC - Rotate accumulator left
+        else if(hex_mem == "07"){ // RLC - Rotate accumulator left
         }
-        else if(hex_mem == "9"){// DAD B - Double add registers B and C to HL
+        else if(hex_mem == "09"){// DAD B - Double add registers B and C to HL
         }
-        else if(hex_mem == "A"){// LDAX B - Load accumulator indirect
+        else if(hex_mem == "0A"){// LDAX B - Load accumulator indirect
         }
-        else if(hex_mem == "B"){// DCX B - Decrement registers B and C
+        else if(hex_mem == "0B"){// DCX B - Decrement registers B and C
             string s = decToHex(reg[1])+decToHex(reg[2]);
             s = decreaseHex(s);
             string s1 = "  ";
@@ -237,19 +237,19 @@ void runprogram(int loc){
             s2[1]=s[3];
             reg[2]=hexToDec(s2);
         }
-        else if(hex_mem == "C"){// INR C - Increment register C
+        else if(hex_mem == "0C"){// INR C - Increment register C
             reg[2]++;
             change_flag(reg[2]);
         }
-        else if(hex_mem == "D"){// DCR C - Decrement register C
+        else if(hex_mem == "0D"){// DCR C - Decrement register C
             reg[2]--;
             change_flag(reg[2]);
         }
-        else if(hex_mem == "E"){// MVI C, data8 - Move immediate 8-bit data into register C
+        else if(hex_mem == "0E"){// MVI C, data8 - Move immediate 8-bit data into register C
             loc++;
             reg[2]=memory[loc];
         }
-        else if(hex_mem == "F"){// RRC - Rotate accumulator right
+        else if(hex_mem == "0F"){// RRC - Rotate accumulator right
         }
         else if(hex_mem == "11"){// LXI D, data16 - Load 16-bit immediate data into registers D and E
             loc++;
