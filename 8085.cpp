@@ -172,7 +172,8 @@ void savetofile(){
             new_file << memory[i]<<"\n";
         }
     }
- }
+}
+
 void loadfromfile(){
     ifstream inputFile("memory.txt");
      if (!inputFile.is_open()) {
@@ -1001,6 +1002,10 @@ B:
         goto END;
 C:
         if(hex_mem == "C0"){// RNZ
+            if(F[1] == '0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "C1"){// POP B
             //store intp C then B;
@@ -1023,15 +1028,22 @@ C:
             }
         }
         else if(hex_mem == "C3"){// JMP
+            loc++;
+            string s2 = decToHex(memory[loc]);
+            loc++;
+            string s1 = decToHex(memory[loc]);
+            string s = s1+s2;
+            loc=hexToDec(s);
+            continue;
         }
         else if(hex_mem == "C4"){// CNZ
             if(F[1]=='0'){
-                stPush(loc);
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
                 string s1 = decToHex(memory[loc]);
                 string s = s1+s2;
+                stPush(++loc);
                 loc=hexToDec(s);
                 continue;
             }
@@ -1050,8 +1062,14 @@ C:
         else if(hex_mem == "C7"){// RST 0
         }
         else if(hex_mem == "C8"){// RZ
+            if(int(F[1])){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "C9"){// RET
+            loc = stPop();
+            continue;
         }
         else if(hex_mem == "CA"){// JZ Address
             if(int(F[1])){
@@ -1070,12 +1088,12 @@ C:
         }
         else if(hex_mem == "CC"){// CZ
             if(int(F[1])){
-                stPush(loc);
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
                 string s1 = decToHex(memory[loc]);
                 string s = s1+s2;
+                stPush(++loc);
                 loc=hexToDec(s);
                 continue;
             }
@@ -1085,7 +1103,13 @@ C:
             }
         }
         else if(hex_mem == "CD"){// CALL
-
+            loc++;
+            string s2 = decToHex(memory[loc]);
+            loc++;
+            string s1 = decToHex(memory[loc]);
+            string s = s1+s2;
+            loc=hexToDec(s);
+            continue;
         }
         else if(hex_mem == "CE"){// ACI
         }
@@ -1094,6 +1118,10 @@ C:
         goto END;
 D:
         if(hex_mem == "D0"){// RNC
+            if(F[7]=='0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "D1"){// POP D
             reg[4] = stPop();
@@ -1122,12 +1150,12 @@ D:
                 loc++;
             }
             else{
-                stPush(loc);
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
                 string s1 = decToHex(memory[loc]);
                 string s = s1+s2;
+                stPush(++loc);
                 loc=hexToDec(s);
                 continue;
             }
@@ -1141,6 +1169,10 @@ D:
         else if(hex_mem == "D7"){// RST 2
         }
         else if(hex_mem == "D8"){// RC
+            if(int(F[7])==1){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "DA"){// JC
             if(int(F[7])==1){
@@ -1161,12 +1193,12 @@ D:
         }
         else if(hex_mem == "DC"){// CC
             if(int(F[7])==1){
-                stPush(loc);
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
                 string s1 = decToHex(memory[loc]);
                 string s = s1+s2;
+                stPush(++loc);
                 loc=hexToDec(s);
                 continue;
             }
@@ -1182,16 +1214,47 @@ D:
         goto END;
 E:
         if(hex_mem == "E0"){// RPO
+            if(F[5] == '0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "E1"){// POP H
             reg[6] = stPop();
             reg[5] = stPop();
         }
         else if(hex_mem == "E2"){// JPO
+            if(F[5]=='0'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "E3"){// XTHL
         }
         else if(hex_mem == "E4"){// CPO
+            if(F[5]=='0'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                stPush(++loc);
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "E5"){// PUSH H
             stPush(get_reg('H'));
@@ -1202,14 +1265,45 @@ E:
         else if(hex_mem == "E7"){// RST 4
         }
         else if(hex_mem == "E8"){// RPE
+            if(F[5] == '1'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "E9"){// PCHL
         }
         else if(hex_mem == "EA"){// JPE
+            if(F[5]=='1'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "EB"){// XCHG
         }
         else if(hex_mem == "EC"){// CPE
+            if(F[5]=='1'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                stPush(++loc);
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "EE"){// XRI
         }
@@ -1218,15 +1312,46 @@ E:
         goto END;
 F:
         if(hex_mem == "F0"){// RP
+            if(F[0] == '0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "F1"){// POP PSW
             F = decToBin(stPop());
         }
         else if(hex_mem == "F2"){// JP
+            if(F[0]=='0'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "F3"){// DI
         }
         else if(hex_mem == "F4"){// CP
+            if(F[0]=='0'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                stPush(++loc);
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "F5"){// PUSH PSW
             stPush(binToDec(F));
@@ -1236,14 +1361,45 @@ F:
         else if(hex_mem == "F7"){// RST 6
         }
         else if(hex_mem == "F8"){// RM
+            if(F[0] == '1'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "F9"){// SPMHL
         }
         else if(hex_mem == "FA"){// JM
+            if(F[0]=='1'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "FB"){// EI
         }
         else if(hex_mem == "FC"){// CM
+            if(F[0]=='1'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                stPush(++loc);
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "FE"){// CPI
         }
@@ -1299,6 +1455,9 @@ int main(){
                         }
                         loc = increaseHexByOne(loc);
                     }
+                    else if(cond == "$"){
+                        savetofile();
+                    }
                 }
             }
             else if(in=='R' || in=='r'){
@@ -1339,7 +1498,6 @@ int main(){
                 string loc;
                 cin>>loc;
                 runprogram(hexToDec(loc));
-                savetofile();
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
                 cout<<F<<endl;
