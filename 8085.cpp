@@ -184,6 +184,45 @@ void runprogram(int loc){
     int ef = hexToDec("EF");
     while(memory[loc]!=ef){
         string hex_mem = decToHex(memory[loc]);
+        
+        //skipping IF
+        char teleport = hex_mem[0];
+        if(teleport == '0')
+            goto ZERO;
+        else if(teleport == '1')
+            goto ONE;
+        else if(teleport == '2')
+            goto TWO;
+        else if(teleport == '3')
+            goto THREE;
+        else if(teleport == '4')
+            goto FOUR;
+        else if(teleport == '5')
+            goto FIVE;
+        else if(teleport == '6')
+            goto SIX;
+        else if(teleport == '7')
+            goto SEVEN;
+        else if(teleport == '8')
+            goto EIGHT;
+        else if(teleport == '9')
+            goto NINE;
+        else if(teleport == 'A')
+            goto A;
+        else if(teleport == 'B')
+            goto B;
+        else if(teleport == 'C')
+            goto C;
+        else if(teleport == 'D')
+            goto D;
+        else if(teleport == 'E')
+            goto E;
+        else if(teleport == 'F')
+            goto F;
+        else
+            throw 104;
+        
+ZERO:
         if(hex_mem == "00"){// NOP
         }
         else if(hex_mem == "01"){// LXI B, data16 - Load 16-bit immediate data into registers B and C
@@ -251,7 +290,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "0F"){// RRC - Rotate accumulator right
         }
-        else if(hex_mem == "11"){// LXI D, data16 - Load 16-bit immediate data into registers D and E
+        goto END;
+ONE:
+        if(hex_mem == "11"){// LXI D, data16 - Load 16-bit immediate data into registers D and E
             loc++;
             reg[4]=memory[loc];
             loc++;
@@ -315,7 +356,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "1F"){// RAR - Rotate accumulator right through carry
         }
-        else if(hex_mem == "20"){// RIM - Read interrupt mask
+        goto END;
+TWO:
+        if(hex_mem == "20"){// RIM - Read interrupt mask
         }
         else if(hex_mem == "21"){// LXI H, data16 - Load 16-bit immediate data into registers H and L
             loc++;
@@ -381,7 +424,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "2F"){// CMA - Complement accumulator
         }
-        else if(hex_mem == "30"){// SIM - Set interrupt mask
+        goto END;
+THREE:
+        if(hex_mem == "30"){// SIM - Set interrupt mask
         }
         else if(hex_mem == "31"){// LXI SP, data16 - Load 16-bit immediate data into stack pointer
         }
@@ -431,7 +476,9 @@ void runprogram(int loc){
                 F[7]='1';
             }
         }
-        else if(hex_mem == "41"){//MOV B,C
+        goto END;
+FOUR:
+        if(hex_mem == "41"){//MOV B,C
             reg[1]=reg[2];
         }
         else if(hex_mem == "42"){//MOV B,D
@@ -473,7 +520,9 @@ void runprogram(int loc){
         else if(hex_mem == "4F"){//MOV C,A
             reg[2]=reg[0];
         }
-        else if(hex_mem == "50"){//MOV D,B
+        goto END;
+FIVE:
+        if(hex_mem == "50"){//MOV D,B
             reg[3]=reg[1];
         }
         else if(hex_mem == "51"){//MOV D,C
@@ -515,7 +564,9 @@ void runprogram(int loc){
         else if(hex_mem == "5F"){//MOV E,A
             reg[4]=reg[0];
         }
-        else if(hex_mem == "60"){//MOV H,B
+        goto END;
+SIX:
+        if(hex_mem == "60"){//MOV H,B
             reg[5]=reg[1];
         }
         else if(hex_mem == "61"){//MOV H,C
@@ -557,7 +608,9 @@ void runprogram(int loc){
         else if(hex_mem == "6F"){//MOV L,A
             reg[6]=reg[0];
         }
-        else if(hex_mem == "70"){//MOV M,B
+        goto END;
+SEVEN:
+        if(hex_mem == "70"){//MOV M,B
             put_M(reg[1]);
         }
         else if(hex_mem == "71"){//MOV M,C
@@ -599,7 +652,9 @@ void runprogram(int loc){
         else if(hex_mem == "7E"){//MOV A,M
             reg[0] = get_M();
         }
-        else if(hex_mem == "80"){// ADD B
+        goto END;
+EIGHT:
+        if(hex_mem == "80"){// ADD B
             reg[0]=reg[0]+reg[1];
             change_flag(reg[0]);
         }
@@ -650,7 +705,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "8F"){// ADC A
         }
-        else if(hex_mem == "90"){// SUB B
+        goto END;
+NINE:
+            if(hex_mem == "90"){// SUB B
             reg[0]=reg[0]-reg[1];
             change_flag(reg[0]);
         }
@@ -698,7 +755,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "9F"){// SBB A
         }
-        else if(hex_mem == "A0"){// ANA B
+        goto END;
+A:
+        if(hex_mem == "A0"){// ANA B
         }
         else if(hex_mem == "A1"){// ANA C
         }
@@ -730,7 +789,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "AF"){// XRA A
         }
-        else if(hex_mem == "B0"){// ORA B
+        goto END;
+B:
+        if(hex_mem == "B0"){// ORA B
         }
         else if(hex_mem == "B1"){// ORA C
         }
@@ -762,7 +823,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "BF"){// CMP A
         }
-        else if(hex_mem == "C0"){// RNZ
+        goto END;
+C:
+        if(hex_mem == "C0"){// RNZ
         }
         else if(hex_mem == "C1"){// POP B
         } 
@@ -792,7 +855,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "CF"){// RST 1
         }
-        else if(hex_mem == "D0"){// RNC
+        goto END;
+D:
+        if(hex_mem == "D0"){// RNC
         }
         else if(hex_mem == "D1"){// POP D
         }
@@ -820,7 +885,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "DF"){// RST 3
         }
-        else if(hex_mem == "E0"){// RPO
+        goto END;
+E:
+        if(hex_mem == "E0"){// RPO
         }
         else if(hex_mem == "E1"){// POP H
         }
@@ -851,7 +918,9 @@ void runprogram(int loc){
         }
         else if(hex_mem == "EF"){// RST 5
         }
-        else if(hex_mem == "F0"){// RP
+        goto END;
+F:
+        if(hex_mem == "F0"){// RP
         }
         else if(hex_mem == "F1"){// POP PSW
         }
@@ -881,7 +950,7 @@ void runprogram(int loc){
         }
         else if(hex_mem == "FF"){// RST 7
         }
-
+END:
         loc++;
     }
 }
@@ -985,6 +1054,9 @@ int main(){
                     break;
                 case 103:
                     cout<<"\n"<<errorCode<<"Memory Location Exceeded \n Press Enter"<<endl;
+                    break;
+                case 104:
+                    cout<<"\n"<<errorCode<<"Wrong Opcode detected \n Press Enter"<<endl;
                     break;
             }
         }
