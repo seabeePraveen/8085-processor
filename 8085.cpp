@@ -169,7 +169,7 @@ void xra(int val){
     reg[0]=reg[0]^val;
 }
 
-void cmp(int val){
+void cma(int val){
     reg[0]= ~val;
 }
 
@@ -277,7 +277,8 @@ ZERO:
             reg[1]=memory[loc];
         }
         else if(hex_mem == "02"){// STAX B - Store accumulator indirect
-
+            string s = decToHex(reg[1])+decToHex(reg[2]);
+            memory[hexToDec(s)]=reg[0];
         }
         else if(hex_mem == "03"){// INX B - Increment registers B and C
             string s = decToHex(reg[1])+decToHex(reg[2]);
@@ -310,6 +311,8 @@ ZERO:
 
         }
         else if(hex_mem == "0A"){// LDAX B - Load accumulator indirect
+            string s = decToHex(reg[1])+decToHex(reg[2]);
+            reg[0]=mem(s);
         }
         else if(hex_mem == "0B"){// DCX B - Decrement registers B and C
             string s = decToHex(reg[1])+decToHex(reg[2]);
@@ -346,6 +349,8 @@ ONE:
             reg[3]=memory[loc];
         }
         else if(hex_mem == "12"){// STAX D - Store accumulator indirect
+            string s = decToHex(reg[3])+decToHex(reg[4]);
+            memory[hexToDec(s)]=reg[0];
         }
         else if(hex_mem == "13"){// INX D - Increment registers D and E
             string s = decToHex(reg[3])+decToHex(reg[4]);
@@ -376,6 +381,8 @@ ONE:
         else if(hex_mem == "19"){// DAD D - Double add registers D and E to HL
         }
         else if(hex_mem == "1A"){// LDAX D - Load accumulator indirect
+            string s = decToHex(reg[3])+decToHex(reg[4]);
+            reg[0]=mem(s);
         }
         else if(hex_mem == "1B"){// DCX D - Decrement registers D and E
             string s = decToHex(reg[3])+decToHex(reg[4]);
@@ -409,11 +416,15 @@ TWO:
         }
         else if(hex_mem == "21"){// LXI H, data16 - Load 16-bit immediate data into registers H and L
             loc++;
+            memory[loc]=reg[6];
+            loc++;
+            memory[loc]=reg[5];
+        }
+        else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
+            loc++;
             reg[6]=memory[loc];
             loc++;
             reg[5]=memory[loc];
-        }
-        else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
         }
         else if(hex_mem == "23"){// INX H - Increment registers H and L
             string s = decToHex(reg[5])+decToHex(reg[6]);
@@ -444,6 +455,10 @@ TWO:
         else if(hex_mem == "29"){// DAD H - Double add registers H and L to HL
         }
         else if(hex_mem == "2A"){// LHLD address - Load H and L registers direct
+            loc++;
+            reg[6]=memory[loc];
+            loc++;
+            reg[5]=memory[loc];
         }
         else if(hex_mem == "2B"){// DCX H - Decrement registers H and L
             string s = decToHex(reg[5])+decToHex(reg[6]);
@@ -470,7 +485,7 @@ TWO:
             reg[6]=memory[loc];
         }
         else if(hex_mem == "2F"){// CMA - Complement accumulator
-            cmp(reg[0]);
+            cma(reg[0]);
         }
         goto END;
 THREE:
@@ -768,7 +783,7 @@ EIGHT:
         }
         goto END;
 NINE:
-            if(hex_mem == "90"){// SUB B
+        if(hex_mem == "90"){// SUB B
             reg[0]=reg[0]-reg[1];
             change_flag(reg[0]);
         }
@@ -917,21 +932,44 @@ B:
             change_flag(reg[0]);
         }
         else if(hex_mem == "B8"){// CMP B
-
+            int x=reg[0];
+            change_flag(reg[0]-reg[1]);
+            reg[0]=x;
         }
         else if(hex_mem == "B9"){// CMP C
+            int x=reg[0];
+            change_flag(reg[0]-reg[2]);
+            reg[0]=x;
         }
         else if(hex_mem == "BA"){// CMP D
+            int x=reg[0];
+            change_flag(reg[0]-reg[3]);
+            reg[0]=x;
         }
         else if(hex_mem == "BB"){// CMP E
+            int x=reg[0];
+            change_flag(reg[0]-reg[4]);
+            reg[0]=x;
         }
         else if(hex_mem == "BC"){// CMP H
+            int x=reg[0];
+            change_flag(reg[0]-reg[5]);
+            reg[0]=x;
         }
         else if(hex_mem == "BD"){// CMP L
+            int x=reg[0];
+            change_flag(reg[0]-reg[6]);
+            reg[0]=x;
         }
         else if(hex_mem == "BE"){// CMP M
+            int x=reg[0];
+            change_flag(reg[0]-get_M());
+            reg[0]=x;
         }
         else if(hex_mem == "BF"){// CMP A
+            int x=reg[0];
+            change_flag(reg[0]-reg[0]);
+            reg[0]=x;
         }
         goto END;
 C:
@@ -943,6 +981,18 @@ C:
             reg[1] = stPop();
         } 
         else if(hex_mem == "C2"){// JNZ
+            if(int(F[1])==0){
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "C3"){// JMP
         }
@@ -961,7 +1011,19 @@ C:
         }
         else if(hex_mem == "C9"){// RET
         }
-        else if(hex_mem == "CA"){// JZ
+        else if(hex_mem == "CA"){// JZ Address
+            if(int(F[1])){
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "CC"){// CZ
         }
@@ -980,6 +1042,18 @@ D:
             reg[3] = stPop();
         }
         else if(hex_mem == "D2"){// JNC
+            if(int(F[7])==1){
+                loc++;
+                loc++;
+            }
+            else{
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
         }
         else if(hex_mem == "D3"){// OUT
         }
@@ -996,6 +1070,18 @@ D:
         else if(hex_mem == "D8"){// RC
         }
         else if(hex_mem == "DA"){// JC
+            if(int(F[7])==1){
+                loc++;
+                string s2 = decToHex(loc);
+                string s1 = decToHex(loc);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "DB"){// IN
         }
