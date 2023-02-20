@@ -152,10 +152,6 @@ void cmp(int val){
     reg[0]= ~val;
 }
 
-void adc(int val){
-    reg[0]=reg[0]+val+
-}
-
 int parity(int num){
     int count=0;
     while(num!=0){
