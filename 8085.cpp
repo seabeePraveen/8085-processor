@@ -1092,7 +1092,13 @@ C:
             }
         }
         else if(hex_mem == "CD"){// CALL
-
+            loc++;
+            string s2 = decToHex(memory[loc]);
+            loc++;
+            string s1 = decToHex(memory[loc]);
+            string s = s1+s2;
+            loc=hexToDec(s);
+            continue;
         }
         else if(hex_mem == "CE"){// ACI
         }
@@ -1203,14 +1209,29 @@ E:
                 string s = s1+s2;
                 loc=hexToDec(s);
                 continue;
-            }else{
+            }
+            else{
                 loc++;
                 loc++;
             }
         }
         else if(hex_mem == "E3"){// XTHL
         }
-        else if(hex_mem == "E4"){// CPO
+        else if(hex_mem == "E4"){// 
+            if(F[5]=='0'){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "E5"){// PUSH H
             stPush(get_reg('H'));
@@ -1233,14 +1254,29 @@ E:
                 string s = s1+s2;
                 loc=hexToDec(s);
                 continue;
-            }else{
-            loc++;
-            loc++;
+            }
+            else{
+                loc++;
+                loc++;
             }
         }
         else if(hex_mem == "EB"){// XCHG
         }
         else if(hex_mem == "EC"){// CPE
+            if(F[5]=='1'){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "EE"){// XRI
         }
@@ -1255,21 +1291,36 @@ F:
         }
         else if(hex_mem == "F2"){// JP
             if(F[0]=='0'){
-                    loc++;
-                    string s2 = decToHex(memory[loc]);
-                    loc++;
-                    string s1 = decToHex(memory[loc]);
-                    string s = s1+s2;
-                    loc=hexToDec(s);
-                    continue;
-                }else{
-                    loc++;
-                    loc++;
-                }
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "F3"){// DI
         }
         else if(hex_mem == "F4"){// CP
+            if(F[0]=='0'){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "F5"){// PUSH PSW
             stPush(binToDec(F));
@@ -1291,7 +1342,8 @@ F:
                 string s = s1+s2;
                 loc=hexToDec(s);
                 continue;
-            }else{
+            }
+            else{
                 loc++;
                 loc++;
             }
@@ -1299,6 +1351,20 @@ F:
         else if(hex_mem == "FB"){// EI
         }
         else if(hex_mem == "FC"){// CM
+            if(F[0]=='1'){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "FE"){// CPI
         }
