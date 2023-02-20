@@ -905,21 +905,44 @@ B:
             change_flag(reg[0]);
         }
         else if(hex_mem == "B8"){// CMP B
-
+            int x=reg[0];
+            change_flag(reg[0]-reg[1]);
+            reg[0]=x;
         }
         else if(hex_mem == "B9"){// CMP C
+            int x=reg[0];
+            change_flag(reg[0]-reg[2]);
+            reg[0]=x;
         }
         else if(hex_mem == "BA"){// CMP D
+            int x=reg[0];
+            change_flag(reg[0]-reg[3]);
+            reg[0]=x;
         }
         else if(hex_mem == "BB"){// CMP E
+            int x=reg[0];
+            change_flag(reg[0]-reg[4]);
+            reg[0]=x;
         }
         else if(hex_mem == "BC"){// CMP H
+            int x=reg[0];
+            change_flag(reg[0]-reg[5]);
+            reg[0]=x;
         }
         else if(hex_mem == "BD"){// CMP L
+            int x=reg[0];
+            change_flag(reg[0]-reg[6]);
+            reg[0]=x;
         }
         else if(hex_mem == "BE"){// CMP M
+            int x=reg[0];
+            change_flag(reg[0]-get_M());
+            reg[0]=x;
         }
         else if(hex_mem == "BF"){// CMP A
+            int x=reg[0];
+            change_flag(reg[0]-reg[0]);
+            reg[0]=x;
         }
         goto END;
 C:
