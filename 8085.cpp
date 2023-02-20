@@ -168,6 +168,8 @@ int parity(int num){
 }
 
 void change_flag(int val){
+    //[ S | 0 | - | AC | - | P | - | C ]
+
     if(val < 0){// To check is less than negitive or not
         F[0] = '1';
     } 
@@ -185,6 +187,11 @@ void change_flag(int val){
     }
     else{
         F[5] = '0';
+    }
+    if(val > 256 || val < -256){// To check for Carry
+        string val_ = decToHex(val).substr(decToHex(val).length()-2,2);
+        F[7] = '1';
+        reg[0] = hexToDec(val_);
     }
 }
 
@@ -1072,9 +1079,7 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                for(int i=0;i<20;i++){
-                    cout<<decToHex(i)<<endl;
-                }
+                //
             }
         }
         catch(int errorCode){
