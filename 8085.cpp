@@ -1023,6 +1023,13 @@ C:
             }
         }
         else if(hex_mem == "C3"){// JMP
+            loc++;
+            string s2 = decToHex(memory[loc]);
+            loc++;
+            string s1 = decToHex(memory[loc]);
+            string s = s1+s2;
+            loc=hexToDec(s);
+            continue;
         }
         else if(hex_mem == "C4"){// CNZ
         }
@@ -1131,6 +1138,18 @@ E:
             reg[5] = stPop();
         }
         else if(hex_mem == "E2"){// JPO
+            if(F[5]=='0'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "E3"){// XTHL
         }
@@ -1149,6 +1168,18 @@ E:
         else if(hex_mem == "E9"){// PCHL
         }
         else if(hex_mem == "EA"){// JPE
+            if(F[5]=='1'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }else{
+            loc++;
+            loc++;
+            }
         }
         else if(hex_mem == "EB"){// XCHG
         }
@@ -1166,6 +1197,18 @@ F:
             F = decToBin(stPop());
         }
         else if(hex_mem == "F2"){// JP
+            if(F[0]=='0'){
+                    loc++;
+                    string s2 = decToHex(memory[loc]);
+                    loc++;
+                    string s1 = decToHex(memory[loc]);
+                    string s = s1+s2;
+                    loc=hexToDec(s);
+                    continue;
+                }else{
+                    loc++;
+                    loc++;
+                }
         }
         else if(hex_mem == "F3"){// DI
         }
@@ -1183,6 +1226,18 @@ F:
         else if(hex_mem == "F9"){// SPMHL
         }
         else if(hex_mem == "FA"){// JM
+            if(F[0]=='1'){
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "FB"){// EI
         }
