@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<fstream>
 using namespace std;
 
 short SP = 65535; //stack pointer pre-defined value;
@@ -999,6 +1000,20 @@ C:
         else if(hex_mem == "C3"){// JMP
         }
         else if(hex_mem == "C4"){// CNZ
+            if(F[1]=='0'){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "C5"){// PUSH B
             //store value of B then C into the Stack
@@ -1029,8 +1044,23 @@ C:
             }
         }
         else if(hex_mem == "CC"){// CZ
+            if(int(F[1])){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "CD"){// CALL
+
         }
         else if(hex_mem == "CE"){// ACI
         }
@@ -1062,6 +1092,20 @@ D:
         else if(hex_mem == "D3"){// OUT
         }
         else if(hex_mem == "D4"){// CNC
+            if(int(F[7])==1){
+                loc++;
+                loc++;
+            }
+            else{
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
         }
         else if(hex_mem == "D5"){// PUSH D
             stPush(get_reg('D'));
@@ -1091,6 +1135,20 @@ D:
         else if(hex_mem == "DB"){// IN
         }
         else if(hex_mem == "DC"){// CC
+            if(int(F[7])==1){
+                stPush(loc);
+                loc++;
+                string s2 = decToHex(memory[loc]);
+                loc++;
+                string s1 = decToHex(memory[loc]);
+                string s = s1+s2;
+                loc=hexToDec(s);
+                continue;
+            }
+            else{
+                loc++;
+                loc++;
+            }
         }
         else if(hex_mem == "DE"){// SBI
         }
