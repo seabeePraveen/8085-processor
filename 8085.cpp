@@ -157,7 +157,7 @@ void xra(int val){
     reg[0]=reg[0]^val;
 }
 
-void cmp(int val){
+void cma(int val){
     reg[0]= ~val;
 }
 
@@ -458,7 +458,7 @@ TWO:
             reg[6]=memory[loc];
         }
         else if(hex_mem == "2F"){// CMA - Complement accumulator
-            cmp(reg[0]);
+            cma(reg[0]);
         }
         goto END;
 THREE:
