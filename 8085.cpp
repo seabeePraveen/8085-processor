@@ -208,6 +208,10 @@ void ora(int val){
     reg[0]=reg[0] | val;
 }
 
+void ana(int val){
+    reg[0]=reg[0] & val;
+}
+
 void runprogram(int loc){
     cout<<"EXECUTING"<<endl;
     int ef = hexToDec("EF");
@@ -454,6 +458,7 @@ TWO:
             reg[6]=memory[loc];
         }
         else if(hex_mem == "2F"){// CMA - Complement accumulator
+            cmp(reg[0]);
         }
         goto END;
 THREE:
@@ -718,23 +723,36 @@ EIGHT:
             change_flag(reg[0]);
         }
         else if(hex_mem == "88"){// ADC B
-
+            reg[0]+=reg[1]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "89"){// ADC C
-
+            reg[0]+=reg[2]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8A"){// ADC D
-
+            reg[0]+=reg[3]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8B"){// ADC E
+            reg[0]+=reg[4]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8C"){// ADC H
+            reg[0]+=reg[5]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8D"){// ADC L
+            reg[0]+=reg[6]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8E"){// ADC M
+            reg[0]+=get_M()+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "8F"){// ADC A
+            reg[0]+=reg[0]+int(F[7]);
+            change_flag(reg[0]);
         }
         goto END;
 NINE:
@@ -789,70 +807,102 @@ NINE:
         goto END;
 A:
         if(hex_mem == "A0"){// ANA B
+            ana(reg[1]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A1"){// ANA C
+            ana(reg[2]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A2"){// ANA D
+            ana(reg[3]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A3"){// ANA E
+            ana(reg[4]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A4"){// ANA H
+            ana(reg[5]);
+            change_flag(reg[0]);
         }
-        else if(hex_mem == "A5"){// ANA L
+        else if(hex_mem == "A5"){// ANA L  
+            ana(reg[6]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A6"){// ANA M
+            ana(get_M());
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A7"){// ANA A
+            ana(reg[0]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A8"){// XRA B
             xra(reg[1]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "A9"){// XRA C
             xra(reg[2]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AA"){// XRA D
             xra(reg[3]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AB"){// XRA E
             xra(reg[4]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AC"){// XRA H
             xra(reg[5]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AD"){// XRA L
             xra(reg[6]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AE"){// XRA M
             xra(get_M());
+            change_flag(reg[0]);
         }
         else if(hex_mem == "AF"){// XRA A
             xra(reg[0]);
+            change_flag(reg[0]);
         }
         goto END;
 B:
         if(hex_mem == "B0"){// ORA B
             ora(reg[1]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B1"){// ORA C
             ora(reg[2]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B2"){// ORA D
             ora(reg[3]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B3"){// ORA E
             ora(reg[4]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B4"){// ORA H
             ora(reg[5]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B5"){// ORA L
             ora(reg[6]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B6"){// ORA M
             ora(get_M());
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B7"){// ORA A
             ora(reg[0]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "B8"){// CMP B
 
