@@ -172,7 +172,8 @@ void savetofile(){
             new_file << memory[i]<<"\n";
         }
     }
- }
+}
+
 void loadfromfile(){
     ifstream inputFile("memory.txt");
      if (!inputFile.is_open()) {
@@ -1001,6 +1002,10 @@ B:
         goto END;
 C:
         if(hex_mem == "C0"){// RNZ
+            if(F[1] == '0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "C1"){// POP B
             //store intp C then B;
@@ -1057,6 +1062,10 @@ C:
         else if(hex_mem == "C7"){// RST 0
         }
         else if(hex_mem == "C8"){// RZ
+            if(int(F[1])){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "C9"){// RET
             loc = stPop();
@@ -1109,6 +1118,10 @@ C:
         goto END;
 D:
         if(hex_mem == "D0"){// RNC
+            if(F[7]=='0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "D1"){// POP D
             reg[4] = stPop();
@@ -1156,6 +1169,10 @@ D:
         else if(hex_mem == "D7"){// RST 2
         }
         else if(hex_mem == "D8"){// RC
+            if(int(F[7])==1){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "DA"){// JC
             if(int(F[7])==1){
@@ -1197,6 +1214,10 @@ D:
         goto END;
 E:
         if(hex_mem == "E0"){// RPO
+            if(F[5] == '0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "E1"){// POP H
             reg[6] = stPop();
@@ -1244,6 +1265,10 @@ E:
         else if(hex_mem == "E7"){// RST 4
         }
         else if(hex_mem == "E8"){// RPE
+            if(F[5] == '1'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "E9"){// PCHL
         }
@@ -1287,6 +1312,10 @@ E:
         goto END;
 F:
         if(hex_mem == "F0"){// RP
+            if(F[0] == '0'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "F1"){// POP PSW
             F = decToBin(stPop());
@@ -1332,6 +1361,10 @@ F:
         else if(hex_mem == "F7"){// RST 6
         }
         else if(hex_mem == "F8"){// RM
+            if(F[0] == '1'){
+                loc = stPop();
+                continue;
+            }
         }
         else if(hex_mem == "F9"){// SPMHL
         }
@@ -1422,6 +1455,9 @@ int main(){
                         }
                         loc = increaseHexByOne(loc);
                     }
+                    else if(cond == "$"){
+                        savetofile();
+                    }
                 }
             }
             else if(in=='R' || in=='r'){
@@ -1462,7 +1498,6 @@ int main(){
                 string loc;
                 cin>>loc;
                 runprogram(hexToDec(loc));
-                savetofile();
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
                 cout<<F<<endl;
