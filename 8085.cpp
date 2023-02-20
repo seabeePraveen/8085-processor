@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <fstream>
 using namespace std;
 
 short SP = 65535; //stack pointer pre-defined value;
@@ -158,6 +159,31 @@ string decreaseHex(string hexNumber) {
         hexNumber[i] = char(hexNumber[i] - 1);
     }
     return hexNumber;
+}
+
+void savetofile(){
+    fstream new_file;
+    new_file.open("memory.txt",ios::out);
+    if(!new_file){
+        return;
+    }
+    else{
+        for(int i=0; i < 65536; i++){
+            new_file << memory[i]<<"\n";
+        }
+    }
+ }
+void loadfromfile(){
+    ifstream inputFile("memory.txt");
+     if (!inputFile.is_open()) {
+        cout << "Error opening file" << endl;
+        // return 1;
+    }
+    string line;
+    int i=0;
+    while (getline(inputFile, line)) {
+        memory[i++]=stoi(line);
+    }
 }
 
 
@@ -1173,6 +1199,7 @@ END:
 
 int main(){
     memset(memory,0,sizeof(memory));
+    loadfromfile();
     while(true){
         try{
             cout<<"_STUDENT_85"<<endl;
@@ -1255,6 +1282,7 @@ int main(){
                 string loc;
                 cin>>loc;
                 runprogram(hexToDec(loc));
+                savetofile();
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
                 cout<<F<<endl;
