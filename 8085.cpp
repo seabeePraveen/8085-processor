@@ -442,6 +442,7 @@ TWO:
             reg[6]=memory[loc];
         }
         else if(hex_mem == "2F"){// CMA - Complement accumulator
+            cmp(reg[0]);
         }
         goto END;
 THREE:
