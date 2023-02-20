@@ -688,6 +688,200 @@ void runprogram(int loc){
         }
         else if(hex_mem == "9A"){// SBB D
         }
+        else if(hex_mem == "9B"){// SBB E
+        }
+        else if(hex_mem == "9C"){// SBB H
+        }
+        else if(hex_mem == "9D"){// SBB L
+        }
+        else if(hex_mem == "9E"){// SBB M
+        }
+        else if(hex_mem == "9F"){// SBB A
+        }
+        else if(hex_mem == "A0"){// ANA B
+        }
+        else if(hex_mem == "A1"){// ANA C
+        }
+        else if(hex_mem == "A2"){// ANA D
+        }
+        else if(hex_mem == "A3"){// ANA E
+        }
+        else if(hex_mem == "A4"){// ANA H
+        }
+        else if(hex_mem == "A5"){// ANA L
+        }
+        else if(hex_mem == "A6"){// ANA M
+        }
+        else if(hex_mem == "A7"){// ANA A
+        }
+        else if(hex_mem == "A8"){// XRA B
+        }
+        else if(hex_mem == "A9"){// XRA C
+        }
+        else if(hex_mem == "AA"){// XRA D
+        }
+        else if(hex_mem == "AB"){// XRA E
+        }
+        else if(hex_mem == "AC"){// XRA H
+        }
+        else if(hex_mem == "AD"){// XRA L
+        }
+        else if(hex_mem == "AE"){// XRA M
+        }
+        else if(hex_mem == "AF"){// XRA A
+        }
+        else if(hex_mem == "B0"){// ORA B
+        }
+        else if(hex_mem == "B1"){// ORA C
+        }
+        else if(hex_mem == "B2"){// ORA D
+        }
+        else if(hex_mem == "B3"){// ORA E
+        }
+        else if(hex_mem == "B4"){// ORA H
+        }
+        else if(hex_mem == "B5"){// ORA L
+        }
+        else if(hex_mem == "B6"){// ORA M
+        }
+        else if(hex_mem == "B7"){// ORA A
+        }
+        else if(hex_mem == "B8"){// CMP B
+        }
+        else if(hex_mem == "B9"){// CMP C
+        }
+        else if(hex_mem == "BA"){// CMP D
+        }
+        else if(hex_mem == "BB"){// CMP E
+        }
+        else if(hex_mem == "BC"){// CMP H
+        }
+        else if(hex_mem == "BD"){// CMP L
+        }
+        else if(hex_mem == "BE"){// CMP M
+        }
+        else if(hex_mem == "BF"){// CMP A
+        }
+        else if(hex_mem == "C0"){// RNZ
+        }
+        else if(hex_mem == "C1"){// POP B
+        } 
+        else if(hex_mem == "C2"){// JNZ
+        }
+        else if(hex_mem == "C3"){// JMP
+        }
+        else if(hex_mem == "C4"){// CNZ
+        }
+        else if(hex_mem == "C5"){// PUSH B
+        }
+        else if(hex_mem == "C6"){// ADI
+        }
+        else if(hex_mem == "C7"){// RST 0
+        }
+        else if(hex_mem == "C8"){// RZ
+        }
+        else if(hex_mem == "C9"){// RET
+        }
+        else if(hex_mem == "CA"){// JZ
+        }
+        else if(hex_mem == "CC"){// CZ
+        }
+        else if(hex_mem == "CD"){// CALL
+        }
+        else if(hex_mem == "CE"){// ACI
+        }
+        else if(hex_mem == "CF"){// RST 1
+        }
+        else if(hex_mem == "D0"){// RNC
+        }
+        else if(hex_mem == "D1"){// POP D
+        }
+        else if(hex_mem == "D2"){// JNC
+        }
+        else if(hex_mem == "D3"){// OUT
+        }
+        else if(hex_mem == "D4"){// CNC
+        }
+        else if(hex_mem == "D5"){// PUSH D
+        }
+        else if(hex_mem == "D6"){// SUI
+        }
+        else if(hex_mem == "D7"){// RST 2
+        }
+        else if(hex_mem == "D8"){// RC
+        }
+        else if(hex_mem == "DA"){// JC
+        }
+        else if(hex_mem == "DB"){// IN
+        }
+        else if(hex_mem == "DC"){// CC
+        }
+        else if(hex_mem == "DE"){// SBI
+        }
+        else if(hex_mem == "DF"){// RST 3
+        }
+        else if(hex_mem == "E0"){// RPO
+        }
+        else if(hex_mem == "E1"){// POP H
+        }
+        else if(hex_mem == "E2"){// JPO
+        }
+        else if(hex_mem == "E3"){// XTHL
+        }
+        else if(hex_mem == "E4"){// CPO
+        }
+        else if(hex_mem == "E5"){// PUSH H
+        }
+        else if(hex_mem == "E6"){// ANI
+        }
+        else if(hex_mem == "E7"){// RST 4
+        }
+        else if(hex_mem == "E8"){// RPE
+        }
+        // PCHL - Load program counter from HL
+        else if(hex_mem == "E9"){// PCHL
+        }
+        else if(hex_mem == "EA"){// JPE
+        }
+        else if(hex_mem == "EB"){// XCHG
+        }
+        else if(hex_mem == "EC"){// CPE
+        }
+        else if(hex_mem == "EE"){// XRI
+        }
+        else if(hex_mem == "EF"){// RST 5
+        }
+        else if(hex_mem == "F0"){// RP
+        }
+        else if(hex_mem == "F1"){// POP PSW
+        }
+        else if(hex_mem == "F2"){// JP
+        }
+        else if(hex_mem == "F3"){// DI
+        }
+        else if(hex_mem == "F4"){// CP
+        }
+        else if(hex_mem == "F5"){// PUSH PSW
+        }
+        else if(hex_mem == "F6"){// ORI
+        }
+        else if(hex_mem == "F7"){// RST 6
+        }
+        else if(hex_mem == "F8"){// RM
+        }
+        else if(hex_mem == "F9"){// SPMHL
+        }
+        else if(hex_mem == "FA"){// JM
+        }
+        else if(hex_mem == "FB"){// EI
+        }
+        else if(hex_mem == "FC"){// CM
+        }
+        else if(hex_mem == "FE"){// CPI
+        }
+        else if(hex_mem == "FF"){// RST 7
+        }
+
         loc++;
     }
 }
