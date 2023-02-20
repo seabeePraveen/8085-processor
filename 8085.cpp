@@ -297,8 +297,10 @@ ZERO:
             change_flag(reg[1]);
         }
         else if(hex_mem == "05"){// DCR B - Decrement register B
+            stPush(reg[0]);
             reg[1]--;
             change_flag(reg[1]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "06"){// MVI B, data8 - Move immediate 8-bit data into register B
             loc++;
@@ -331,8 +333,10 @@ ZERO:
             change_flag(reg[2]);
         }
         else if(hex_mem == "0D"){// DCR C - Decrement register C
+            stPush(reg[0]);
             reg[2]--;
             change_flag(reg[2]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "0E"){// MVI C, data8 - Move immediate 8-bit data into register C
             loc++;
@@ -369,8 +373,10 @@ ONE:
             change_flag(reg[3]);
         }
         else if(hex_mem == "15"){// DCR D - Decrement register D
+            stPush(reg[0]);
             reg[3]--;
             change_flag(reg[3]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "16"){// MVI D, data8 - Move immediate 8-bit data into register D
             loc++;
@@ -401,8 +407,10 @@ ONE:
             change_flag(reg[4]);
         }
         else if(hex_mem == "1D"){// DCR E - Decrement register E
+            stPush(reg[0]);
             reg[4]--;
             change_flag(reg[4]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "1E"){// MVI E, data8 - Move immediate 8-bit data into register E
             loc++;
@@ -443,8 +451,10 @@ TWO:
             change_flag(reg[5]);
         }
         else if(hex_mem == "25"){// DCR H - Decrement register H
+            stPush(reg[0]);
             reg[5]--;
             change_flag(reg[5]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "26"){// MVI H, data8 - Move immediate 8-bit data into register H
             loc++;
@@ -477,8 +487,10 @@ TWO:
             change_flag(reg[6]);
         }
         else if(hex_mem == "2D"){// DCR L - Decrement register L
+            stPush(reg[0]);
             reg[6]--;
             change_flag(reg[6]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "2E"){// MVI L, data8 - Move immediate 8-bit data into register L
             loc++;
@@ -502,8 +514,10 @@ THREE:
             memory[hexToDec(s)]++;
         }
         else if(hex_mem == "35"){// DCR M - Decrement memory pointed by HL
+            stPush(reg[0]);
             string s = decToHex(reg[5])+decToHex(reg[6]);
             memory[hexToDec(s)]--;
+            reg[0] = stPop();
         }
         else if(hex_mem == "36"){// MVI M, data8 - Move immediate 8-bit data into memory pointed by HL
             loc++;
@@ -524,8 +538,10 @@ THREE:
             change_flag(reg[0]);
         }
         else if(hex_mem == "3D"){// DCR A - Decrement accumulator
+            stPush(reg[0]);
             reg[0]--;
             change_flag(reg[0]);
+            reg[0] = stPop();
         }
         else if(hex_mem == "3E"){// MVI A, data8 - Move immediate 8-bit data into accumulator
             loc++;
