@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<stdlib.h>
 #include<string>
 #include<math.h>
 using namespace std;
@@ -177,6 +178,10 @@ void change_flag(int val){
     else{
         F[5] = '0';
     }
+}
+
+void ora(int val){
+    reg[0]=reg[0] | val;
 }
 
 void runprogram(int loc){
@@ -792,22 +797,31 @@ A:
         goto END;
 B:
         if(hex_mem == "B0"){// ORA B
+            ora(reg[1]);
         }
         else if(hex_mem == "B1"){// ORA C
+            ora(reg[2]);
         }
         else if(hex_mem == "B2"){// ORA D
+            ora(reg[3]);
         }
         else if(hex_mem == "B3"){// ORA E
+            ora(reg[4]);
         }
         else if(hex_mem == "B4"){// ORA H
+            ora(reg[5]);
         }
         else if(hex_mem == "B5"){// ORA L
+            ora(reg[6]);
         }
         else if(hex_mem == "B6"){// ORA M
+            ora(get_M());
         }
         else if(hex_mem == "B7"){// ORA A
+            ora(reg[0]);
         }
         else if(hex_mem == "B8"){// CMP B
+
         }
         else if(hex_mem == "B9"){// CMP C
         }
@@ -905,7 +919,6 @@ E:
         }
         else if(hex_mem == "E8"){// RPE
         }
-        // PCHL - Load program counter from HL
         else if(hex_mem == "E9"){// PCHL
         }
         else if(hex_mem == "EA"){// JPE
@@ -962,6 +975,7 @@ int main(){
             cout<<"_STUDENT_85"<<endl;
             char in;
             cin>>in;
+            // system("clear");
             if(in=='M' || in=='m'){
                 string loc;
                 cin>>loc;
@@ -976,6 +990,7 @@ int main(){
                     cout<<"M"<<loc<<":";
                     cout<<decToHex(mem(loc))<<"-";
                     getline(cin,cond);
+                    // system("clear");
                     if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
                         loc=increaseHexByOne(loc);
                     }
