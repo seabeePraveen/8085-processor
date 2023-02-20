@@ -984,6 +984,7 @@ C:
             if(int(F[1])==0){
                 loc++;
                 string s2 = decToHex(loc);
+                loc++;
                 string s1 = decToHex(loc);
                 string s = s1+s2;
                 loc=hexToDec(s);
@@ -1015,6 +1016,7 @@ C:
             if(int(F[1])){
                 loc++;
                 string s2 = decToHex(loc);
+                loc++;
                 string s1 = decToHex(loc);
                 string s = s1+s2;
                 loc=hexToDec(s);
@@ -1049,6 +1051,7 @@ D:
             else{
                 loc++;
                 string s2 = decToHex(loc);
+                loc++;
                 string s1 = decToHex(loc);
                 string s = s1+s2;
                 loc=hexToDec(s);
@@ -1073,6 +1076,7 @@ D:
             if(int(F[7])==1){
                 loc++;
                 string s2 = decToHex(loc);
+                loc++;
                 string s1 = decToHex(loc);
                 string s = s1+s2;
                 loc=hexToDec(s);
