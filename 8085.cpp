@@ -1450,13 +1450,9 @@ int main(){
                         }
                         else{
                             int dec_loc = hexToDec(loc);
-                            vector<char>  v;
-                            v.push_back(cond[cond.size()-1]);
-                            v.push_back(cond[cond.size()-2]);
-                            string val="  ";
-                            val[0]=v[1];
-                            val[1]=v[0];
-                            memory[dec_loc]=hexToDec(val);
+                            string val = cond.substr(cond.size() - 2);
+                            reverse(val.begin(), val.end());
+                            memory[dec_loc] = hexToDec(val);
                         }
                         loc = increaseHexByOne(loc);
                     }
