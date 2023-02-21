@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 #include<fstream>
 #include <cstdlib>
-#include <sys/utsname.h>
 using namespace std;
 
 #ifdef _WIN32
