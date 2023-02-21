@@ -32,6 +32,9 @@ int hexToDec(string hex){
         else if (hex[i] >= 'a' && hex[i] <= 'f'){
             dec += (hex[i] - 'a' + 10) * base;
         }
+        else{
+            throw 105;
+        }
         base *= 16;
     }
     return dec;
@@ -112,13 +115,9 @@ string getPointer(){
 }
 
 short get_M(){
-    string HLpointer = "    ";
     string s1 = decToHex(get_reg('H'));
     string s2 = decToHex(get_reg('L'));
-    HLpointer[0]=s1[0];
-    HLpointer[1]=s1[1];
-    HLpointer[2]=s2[0];
-    HLpointer[3]=s2[1];
+    string HLpointer = s1+s2;
     return mem(HLpointer);
 }
 
@@ -174,11 +173,10 @@ void savetofile(){
     }
 }
 
-void loadfromfile(){
+void loadmemory(){
     ifstream inputFile("memory.txt");
-     if (!inputFile.is_open()) {
-        cout << "Error opening file" << endl;
-        // return 1;
+    if (!inputFile.is_open()) {
+        return ;    
     }
     string line;
     int i=0;
@@ -1288,6 +1286,13 @@ E:
             }
         }
         else if(hex_mem == "EB"){// XCHG
+            //hl to de
+            int x = reg[3];
+            int y = reg[4];
+            reg[3]=reg[5];
+            reg[4]=reg[6];
+            reg[5]=x;
+            reg[6]=y;
         }
         else if(hex_mem == "EC"){// CPE
             if(F[5]=='1'){
@@ -1412,7 +1417,7 @@ END:
 
 int main(){
     memset(memory,0,sizeof(memory));
-    loadfromfile();
+    loadmemory();
     while(true){
         try{
             cout<<"_STUDENT_85"<<endl;
@@ -1445,13 +1450,9 @@ int main(){
                         }
                         else{
                             int dec_loc = hexToDec(loc);
-                            vector<char>  v;
-                            v.push_back(cond[cond.size()-1]);
-                            v.push_back(cond[cond.size()-2]);
-                            string val="  ";
-                            val[0]=v[1];
-                            val[1]=v[0];
-                            memory[dec_loc]=hexToDec(val);
+                            string val = cond.substr(cond.size() - 2);
+                            reverse(val.begin(), val.end());
+                            memory[dec_loc] = hexToDec(val);
                         }
                         loc = increaseHexByOne(loc);
                     }
@@ -1475,13 +1476,9 @@ int main(){
                             reg[i]=hexToDec(cond);
                         }
                         else if(l!=0){
-                            vector<char>  v;
-                            v.push_back(cond[cond.size()-1]);
-                            v.push_back(cond[cond.size()-2]);
-                            string val="  ";
-                            val[0]=v[1];
-                            val[1]=v[0];
-                            reg[i]=hexToDec(val);
+                            string val = cond.substr(cond.size() - 2);
+                            reverse(val.begin(), val.end());
+                            reg[i] = hexToDec(val);
                         }
                         i++;
                     }
@@ -1489,7 +1486,7 @@ int main(){
                         break;
                     }
                     else{
-                        cout<<"ERROR OCCURED"<<endl;
+                        throw 000;
                         break;
                     }
                 }
@@ -1500,11 +1497,14 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                cout<<F<<endl;
+                cout<<get_M()<<endl;
             }
         }
         catch(int errorCode){
             switch(errorCode){
+                case 000:
+                    cout<<"\n"<<errorCode<<"Unexpected Error \n Press Enter"<<endl;
+                    break;
                 case 101:
                     cout<<"\n"<<errorCode<<"Unrecognized register \n Press Enter"<<endl;
                     break;
@@ -1516,6 +1516,9 @@ int main(){
                     break;
                 case 104:
                     cout<<"\n"<<errorCode<<"Wrong Opcode detected \n Press Enter"<<endl;
+                    break;
+                case 105:
+                    cout<<"\n"<<errorCode<<"Input not recognized \n Press Enter"<<endl;
                     break;
             }
         }
