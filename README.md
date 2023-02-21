@@ -1,35 +1,71 @@
-# 8085 SIMULATOR
-<hr>
+# Intel 8085 Virtual Emulator
 
-## Components
+This is an open-source project that aims to simulate the functionality of the Intel 8085 microprocessor in a software environment. The program is written in C++ and provides a simple interface for users to interact with the virtual machine.
 
-The 8085 Simulator consists of the following components:
+## Installation
 
-- **Memory:** A short memory array of 65536 elements is used to store instructions and data.
-- **Registers:** A short array of 7 elements is used to store the contents of the registers A, B, C, D, E, H, and L.
-- **Flags:** A string of 8 bits is used to store the contents of the flags.
+To use the Intel 8085 Virtual Emulator, you need to have a C++ compiler installed on your system. You can use any compiler that supports C++11 or higher. We recommend using GCC or Clang for best results.
+
+To compile the program, simply run the following command in your terminal:
+
+```
+g++ -std=c++11 8085.cpp -o 8085
+
+```
+
+This will compile the program and generate an executable file named `8085`.
 
 ## Usage
 
-The simulator can be used to execute 8085 instructions. The following functions are used to interact with the simulator:
+To run the Intel 8085 Virtual Emulator, simply execute the `8085` file in your terminal:
 
-- **hexToDec(string hex):** This function takes a string of hexadecimal digits as an argument and returns its decimal equivalent.
-- **decToHex(int dec):** This function takes a decimal number as an argument and returns its hexadecimal equivalent.
-- **mem(string loc):** This function takes the memory location as an argument and returns its corresponding value from the memory array.
-- **get_reg(char r):** This function takes the register name as an argument and returns the corresponding value from the registers array.
-- **getPointer():** This function returns the address of the HL pointer.
-- **get_M():** This function returns the value at the memory location pointed to by the HL pointer.
-- **put_M(short val):** This function adds the given value to the memory at the location pointed to by the HL pointer.
+```
+./8085-processor
 
-## Execution
+```
 
-The 8085 Simulator can be used to execute 8085 instructions. The following functions are used to interact with the simulator:
+This will start the program and initialize the virtual machine. The program will then enter into an infinite loop and wait for user input.
 
-- **execute(string inst):** This function takes an instruction as an argument and executes it, making changes to memory and registers as required.
-- **get_flag(char flag):** This function takes the flag name as an argument and returns the corresponding value from the flags string.
-- **put_flag(char flag, bool val):** This function takes the flag name and the value to be set as arguments and sets the corresponding bit in the flags string.
-- **reset():** This function resets all the components of the simulator to their default values.
-- **dump_memory():** This function prints the contents of the memory array.
-- **dump_registers():** This function prints the contents of the registers array.
-- **dump_flags():** This function prints the contents of the flags string.
-- **dump_all():** This function prints the contents of the memory, registers, and flags strings.
+When you run the code in the compiler, you will see the line _STUDENT_85, and the code will begin processing using the memory location specified by the variable M. Once you enter a value for the location, you will see the contents of that memory location displayed as M(your location value): (previous data) - (new data that you can enter). To add a value to a different memory location, press the 'Enter' key. To stop the program, enter 'EF'. To close the program, enter '$'. To execute the program, enter G(location value). To view the contents of the registers, enter R and press the 'Enter' key.
+
+### Commands
+
+The program supports the following commands:
+
+- 'M' or 'm': Modify memory contents
+- 'R' or 'r': Modify register contents
+- 'G' or 'g': Execute the program starting from a particular memory location
+
+### Modify Memory Contents
+
+To modify the contents of memory, enter 'M' or 'm' followed by the memory location you want to modify. The program will then prompt you to enter the new value for that memory location.
+
+If the memory location you enter is invalid, the program will report an error and prompt you to try again.
+
+### Modify Register Contents
+
+To modify the contents of registers, enter 'R' or 'r' followed by the register you want to modify. The program will then prompt you to enter the new value for that register.
+
+If the register you enter is invalid, the program will report an error and prompt you to try again.
+
+### Execute Program
+
+To execute the program, enter 'G' or 'g' followed by the memory location you want to start executing from. The program will then execute the program starting from that memory location.
+
+If the memory location you enter is invalid, the program will report an error and prompt you to try again.
+
+### Error Handling
+
+The program uses error handling to detect and report various errors such as unrecognized memory locations or registers, exceeded memory locations, wrong opcodes, and unrecognized inputs.
+
+If an error is detected, the program will report the error code and prompt you to try again.
+
+## Contributing
+
+We welcome contributions from the community! If you find a bug or have a feature request, please open an issue on our GitHub repository.
+
+If you want to contribute code to the project, please fork the repository and submit a pull request with your changes.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for more information.
