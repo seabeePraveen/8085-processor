@@ -1,6 +1,13 @@
 #include<bits/stdc++.h>
 #include<fstream>
+#include <cstdlib>
 using namespace std;
+
+#ifdef _WIN32
+#define CLEAR_SCREEN "cls"
+#else
+#define CLEAR_SCREEN "clear"
+#endif
 
 short SP = 65535; //stack pointer pre-defined value;
 short memory[65536];
@@ -1416,6 +1423,7 @@ END:
 }
 
 int main(){
+    system(CLEAR_SCREEN);
     memset(memory,0,sizeof(memory));
     loadmemory();
     while(true){
@@ -1423,7 +1431,7 @@ int main(){
             cout<<"_STUDENT_85"<<endl;
             char in;
             cin>>in;
-            // system("clear");
+            system(CLEAR_SCREEN);
             if(in=='M' || in=='m'){
                 string loc;
                 cin>>loc;
@@ -1438,7 +1446,7 @@ int main(){
                     cout<<"M"<<loc<<":";
                     cout<<decToHex(mem(loc))<<"-";
                     getline(cin,cond);
-                    // system("clear");
+                    system(CLEAR_SCREEN);
                     if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
                         loc=increaseHexByOne(loc);
                     }
@@ -1470,6 +1478,7 @@ int main(){
                     cout<<registe[i]<<":";
                     cout<<decToHex(get_reg(registe[i]))<<"-";
                     getline(cin,cond);
+                    system(CLEAR_SCREEN);
                     if(cond != "$"){
                         int l = cond.size();
                         if(l==1 || l==2){
@@ -1494,11 +1503,12 @@ int main(){
             else if(in=='G' || in=='g'){
                 string loc;
                 cin>>loc;
+                system(CLEAR_SCREEN);
                 runprogram(hexToDec(loc));
             }
-            else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                cout<<get_M()<<endl;
-            }
+            // else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
+            //     cout<<get_M()<<endl;
+            // }
         }
         catch(int errorCode){
             switch(errorCode){
