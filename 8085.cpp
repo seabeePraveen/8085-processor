@@ -1423,6 +1423,7 @@ END:
 }
 
 int main(){
+    system(CLEAR_SCREEN);
     memset(memory,0,sizeof(memory));
     loadmemory();
     while(true){
