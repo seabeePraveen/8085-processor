@@ -9,15 +9,15 @@ To use the Intel 8085 Virtual Emulator, you need to have a C++ compiler installe
 To compile the program, simply run the following command in your terminal:
 
 ```
-g++ -std=c++11 emulator.cpp -o emulator
+g++ -std=c++11 8085.cpp -o 8085
 
 ```
 
-This will compile the program and generate an executable file named `emulator`.
+This will compile the program and generate an executable file named `8085`.
 
 ## Usage
 
-To run the Intel 8085 Virtual Emulator, simply execute the `emulator` file in your terminal:
+To run the Intel 8085 Virtual Emulator, simply execute the `8085` file in your terminal:
 
 ```
 ./emulator
