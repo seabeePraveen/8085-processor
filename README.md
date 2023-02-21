@@ -20,7 +20,7 @@ This will compile the program and generate an executable file named `8085`.
 To run the Intel 8085 Virtual Emulator, simply execute the `8085` file in your terminal:
 
 ```
-./emulator
+./8085-processor
 
 ```
 

@@ -1511,6 +1511,7 @@ int main(){
             // }
         }
         catch(int errorCode){
+            string val;
             switch(errorCode){
                 case 000:
                     cout<<"\n"<<errorCode<<"Unexpected Error \n Press Enter"<<endl;
@@ -1531,6 +1532,9 @@ int main(){
                     cout<<"\n"<<errorCode<<"Input not recognized \n Press Enter"<<endl;
                     break;
             }
+            getline(cin,val);
+            getline(cin,val);
+            system(CLEAR_SCREEN);
         }
     }
 }
