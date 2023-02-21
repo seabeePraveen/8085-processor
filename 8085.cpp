@@ -241,10 +241,14 @@ void change_flag(int val){
     else{
         F[5] = '0';
     }
-    if(val > 256 || val < -256){// To check for Carry
+    if(val > 255 || val<0){// To check for Carry
+        val = abs(val);
         string val_ = decToHex(val).substr(decToHex(val).length()-2,2);
-        F[7] = '1';
+        F[7] =  '1';
         reg[0] = hexToDec(val_);
+    }
+    else{
+        F[7] = '0';
     }
 }
 
@@ -260,7 +264,6 @@ void runprogram(int loc){
     cout<<"EXECUTING"<<endl;
     while(loc < 65536){
         string hex_mem = decToHex(memory[loc]);
-        
         //skipping IF
         char teleport = hex_mem[0];
         if(teleport == '0')
@@ -1078,7 +1081,7 @@ C:
         else if(hex_mem == "C7"){// RST 0
         }
         else if(hex_mem == "C8"){// RZ
-            if(int(F[1])){
+            if(F[1]=='1'){
                 loc = stPop();
                 continue;
             }
@@ -1088,7 +1091,7 @@ C:
             continue;
         }
         else if(hex_mem == "CA"){// JZ Address
-            if(int(F[1])){
+            if(F[1]=='1'){
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
@@ -1103,7 +1106,7 @@ C:
             }
         }
         else if(hex_mem == "CC"){// CZ
-            if(int(F[1])){
+            if(F[1]=='1'){
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
@@ -1144,7 +1147,7 @@ D:
             reg[3] = stPop();
         }
         else if(hex_mem == "D2"){// JNC
-            if(int(F[7])==1){
+            if(F[7]=='1'){
                 loc++;
                 loc++;
             }
@@ -1161,7 +1164,7 @@ D:
         else if(hex_mem == "D3"){// OUT
         }
         else if(hex_mem == "D4"){// CNC
-            if(int(F[7])==1){
+            if(F[7]=='1'){
                 loc++;
                 loc++;
             }
@@ -1185,13 +1188,13 @@ D:
         else if(hex_mem == "D7"){// RST 2
         }
         else if(hex_mem == "D8"){// RC
-            if(int(F[7])==1){
+            if(F[7]=='1'){
                 loc = stPop();
                 continue;
             }
         }
         else if(hex_mem == "DA"){// JC
-            if(int(F[7])==1){
+            if(F[7]=='1'){
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
@@ -1208,7 +1211,7 @@ D:
         else if(hex_mem == "DB"){// IN
         }
         else if(hex_mem == "DC"){// CC
-            if(int(F[7])==1){
+            if(F[7]=='1'){
                 loc++;
                 string s2 = decToHex(memory[loc]);
                 loc++;
