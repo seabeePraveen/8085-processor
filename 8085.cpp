@@ -174,11 +174,10 @@ void savetofile(){
     }
 }
 
-void loadfromfile(){
+void loadmemory(){
     ifstream inputFile("memory.txt");
-     if (!inputFile.is_open()) {
-        cout << "Error opening file" << endl;
-        // return 1;
+    if (!inputFile.is_open()) {
+        return ;    
     }
     string line;
     int i=0;
@@ -1412,7 +1411,7 @@ END:
 
 int main(){
     memset(memory,0,sizeof(memory));
-    loadfromfile();
+    loadmemory();
     while(true){
         try{
             cout<<"_STUDENT_85"<<endl;
