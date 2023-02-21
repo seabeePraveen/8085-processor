@@ -112,13 +112,9 @@ string getPointer(){
 }
 
 short get_M(){
-    string HLpointer = "    ";
     string s1 = decToHex(get_reg('H'));
     string s2 = decToHex(get_reg('L'));
-    HLpointer[0]=s1[0];
-    HLpointer[1]=s1[1];
-    HLpointer[2]=s2[0];
-    HLpointer[3]=s2[1];
+    string HLpointer = s1+s2;
     return mem(HLpointer);
 }
 
@@ -1500,7 +1496,7 @@ int main(){
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                cout<<F<<endl;
+                cout<<get_M()<<endl;
             }
         }
         catch(int errorCode){
