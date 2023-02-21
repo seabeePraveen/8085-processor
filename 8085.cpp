@@ -258,8 +258,7 @@ void ana(int val){
 
 void runprogram(int loc){
     cout<<"EXECUTING"<<endl;
-    int ef = hexToDec("EF");
-    while(memory[loc]!=ef){
+    while(loc < 65536){
         string hex_mem = decToHex(memory[loc]);
         
         //skipping IF
@@ -1332,6 +1331,7 @@ E:
         else if(hex_mem == "EE"){// XRI
         }
         else if(hex_mem == "EF"){// RST 5
+            break;
         }
         goto END;
 F:
