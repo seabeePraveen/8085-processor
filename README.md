@@ -26,6 +26,8 @@ To run the Intel 8085 Virtual Emulator, simply execute the `8085` file in your t
 
 This will start the program and initialize the virtual machine. The program will then enter into an infinite loop and wait for user input.
 
+When you run the code in the compiler, you will see the line _STUDENT_85, and the code will begin processing using the memory location specified by the variable M. Once you enter a value for the location, you will see the contents of that memory location displayed as M(your location value): (previous data) - (new data that you can enter). To add a value to a different memory location, press the 'Enter' key. To stop the program, enter 'EF'. To close the program, enter '$'. To execute the program, enter G(location value). To view the contents of the registers, enter R and press the 'Enter' key.
+
 ### Commands
 
 The program supports the following commands:
