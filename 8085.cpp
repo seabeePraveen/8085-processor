@@ -32,6 +32,9 @@ int hexToDec(string hex){
         else if (hex[i] >= 'a' && hex[i] <= 'f'){
             dec += (hex[i] - 'a' + 10) * base;
         }
+        else{
+            throw 105;
+        }
         base *= 16;
     }
     return dec;
@@ -1485,7 +1488,7 @@ int main(){
                         break;
                     }
                     else{
-                        cout<<"ERROR OCCURED"<<endl;
+                        throw 000;
                         break;
                     }
                 }
@@ -1501,6 +1504,9 @@ int main(){
         }
         catch(int errorCode){
             switch(errorCode){
+                case 000:
+                    cout<<"\n"<<errorCode<<"Unexpected Error \n Press Enter"<<endl;
+                    break;
                 case 101:
                     cout<<"\n"<<errorCode<<"Unrecognized register \n Press Enter"<<endl;
                     break;
@@ -1512,6 +1518,9 @@ int main(){
                     break;
                 case 104:
                     cout<<"\n"<<errorCode<<"Wrong Opcode detected \n Press Enter"<<endl;
+                    break;
+                case 105:
+                    cout<<"\n"<<errorCode<<"Input not recognized \n Press Enter"<<endl;
                     break;
             }
         }
