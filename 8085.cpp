@@ -1286,6 +1286,13 @@ E:
             }
         }
         else if(hex_mem == "EB"){// XCHG
+            //hl to de
+            int x = reg[3];
+            int y = reg[4];
+            reg[3]=reg[5];
+            reg[4]=reg[6];
+            reg[5]=x;
+            reg[6]=y;
         }
         else if(hex_mem == "EC"){// CPE
             if(F[5]=='1'){
