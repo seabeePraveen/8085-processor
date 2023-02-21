@@ -1480,13 +1480,9 @@ int main(){
                             reg[i]=hexToDec(cond);
                         }
                         else if(l!=0){
-                            vector<char>  v;
-                            v.push_back(cond[cond.size()-1]);
-                            v.push_back(cond[cond.size()-2]);
-                            string val="  ";
-                            val[0]=v[1];
-                            val[1]=v[0];
-                            reg[i]=hexToDec(val);
+                            string val = cond.substr(cond.size() - 2);
+                            reverse(val.begin(), val.end());
+                            reg[i] = hexToDec(val);
                         }
                         i++;
                     }
