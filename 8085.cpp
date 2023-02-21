@@ -1499,9 +1499,9 @@ int main(){
                 system("clear");
                 runprogram(hexToDec(loc));
             }
-            else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
-                cout<<get_M()<<endl;
-            }
+            // else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
+            //     cout<<get_M()<<endl;
+            // }
         }
         catch(int errorCode){
             switch(errorCode){
