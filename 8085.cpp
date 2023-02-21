@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #include<fstream>
+#include <cstdlib>
 using namespace std;
 
 short SP = 65535; //stack pointer pre-defined value;
@@ -1423,7 +1424,7 @@ int main(){
             cout<<"_STUDENT_85"<<endl;
             char in;
             cin>>in;
-            // system("clear");
+            system("clear");
             if(in=='M' || in=='m'){
                 string loc;
                 cin>>loc;
@@ -1438,7 +1439,7 @@ int main(){
                     cout<<"M"<<loc<<":";
                     cout<<decToHex(mem(loc))<<"-";
                     getline(cin,cond);
-                    // system("clear");
+                    system("clear");
                     if(cond.empty() || (cond.size() == 1 && cond[0] == '\n')){
                         loc=increaseHexByOne(loc);
                     }
@@ -1470,6 +1471,7 @@ int main(){
                     cout<<registe[i]<<":";
                     cout<<decToHex(get_reg(registe[i]))<<"-";
                     getline(cin,cond);
+                    system("clear");
                     if(cond != "$"){
                         int l = cond.size();
                         if(l==1 || l==2){
@@ -1494,6 +1496,7 @@ int main(){
             else if(in=='G' || in=='g'){
                 string loc;
                 cin>>loc;
+                system("clear");
                 runprogram(hexToDec(loc));
             }
             else if(in=='T' || in=='t'){//condition for testing the function, remove after testing
