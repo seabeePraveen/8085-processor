@@ -527,6 +527,12 @@ THREE:
         else if(hex_mem == "31"){// LXI SP, data16 - Load 16-bit immediate data into stack pointer
         }
         else if(hex_mem == "32"){// STA address - Store accumulator direct
+            loc++;
+            string s2 = decToHex(memory[loc]);
+            loc++;
+            string s1 = decToHex(memory[loc]);
+            string s3 = s1+s2;
+            memory[hexToDec(s3)]=reg[0];
         }
         else if(hex_mem == "33"){// INX SP - Increment stack pointer
         }
@@ -549,6 +555,12 @@ THREE:
         else if(hex_mem == "39"){// DAD SP - Double add stack pointer to HL
         }
         else if(hex_mem == "3A"){// LDA address - Load accumulator direct
+            loc++;
+            string s2 = decToHex(memory[loc]);
+            loc++;
+            string s1 = decToHex(memory[loc]);
+            string s = s1+s2;
+            reg[0]=mem(s);
         }
         else if(hex_mem == "3B"){// DCX SP - Decrement stack pointer
         }
