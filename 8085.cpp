@@ -264,6 +264,7 @@ void runprogram(int loc){
     cout<<"EXECUTING"<<endl;
     while(loc < 65536){
         string hex_mem = decToHex(memory[loc]);
+        cout<<decToHex(loc)<<endl;
         //skipping IF
         char teleport = hex_mem[0];
         if(teleport == '0')
@@ -335,7 +336,9 @@ ZERO:
         }
         else if(hex_mem == "05"){// DCR B - Decrement register B
             reg[1]--;
+            int x = reg[0];
             change_flag(reg[1]);
+            reg[0]=x;
         }
         else if(hex_mem == "06"){// MVI B, data8 - Move immediate 8-bit data into register B
             loc++;
@@ -365,10 +368,14 @@ ZERO:
         }
         else if(hex_mem == "0C"){// INR C - Increment register C
             reg[2]++;
+            int x = reg[0];
             change_flag(reg[2]);
+            reg[0]=x;
         }
         else if(hex_mem == "0D"){// DCR C - Decrement register C
             reg[2]--;
+            int x = reg[0];
+            reg[0]=x;
             change_flag(reg[2]);
         }
         else if(hex_mem == "0E"){// MVI C, data8 - Move immediate 8-bit data into register C
@@ -403,11 +410,15 @@ ONE:
         }
         else if(hex_mem == "14"){// INR D - Increment register D
             reg[3]++;
+            int x = reg[0];
             change_flag(reg[3]);
+            reg[0]=x;
         }
         else if(hex_mem == "15"){// DCR D - Decrement register D
             reg[3]--;
+            int x = reg[0];
             change_flag(reg[3]);
+            reg[0]=x;
         }
         else if(hex_mem == "16"){// MVI D, data8 - Move immediate 8-bit data into register D
             loc++;
@@ -435,11 +446,15 @@ ONE:
         }
         else if(hex_mem == "1C"){// INR E - Increment register E
             reg[4]++;
+            int x = reg[0];
             change_flag(reg[4]);
+            reg[0]=x;
         }
         else if(hex_mem == "1D"){// DCR E - Decrement register E
             reg[4]--;
+            int x = reg[0];
             change_flag(reg[4]);
+            reg[0]=x;
         }
         else if(hex_mem == "1E"){// MVI E, data8 - Move immediate 8-bit data into register E
             loc++;
@@ -477,11 +492,15 @@ TWO:
         }
         else if(hex_mem == "24"){// INR H - Increment register H
             reg[5]++;
+            int x = reg[0];
             change_flag(reg[5]);
+            reg[0]=x;
         }
         else if(hex_mem == "25"){// DCR H - Decrement register H
             reg[5]--;
+            int x = reg[0];
             change_flag(reg[5]);
+            reg[0]=x;
         }
         else if(hex_mem == "26"){// MVI H, data8 - Move immediate 8-bit data into register H
             loc++;
@@ -511,11 +530,15 @@ TWO:
         }
         else if(hex_mem == "2C"){// INR L - Increment register L
             reg[6]++;
+            int x = reg[0];
             change_flag(reg[6]);
+            reg[0]=x;
         }
         else if(hex_mem == "2D"){// DCR L - Decrement register L
             reg[6]--;
+            int x = reg[0];
             change_flag(reg[6]);
+            reg[0]=x;
         }
         else if(hex_mem == "2E"){// MVI L, data8 - Move immediate 8-bit data into register L
             loc++;
@@ -1129,6 +1152,7 @@ C:
             loc++;
             string s1 = decToHex(memory[loc]);
             string s = s1+s2;
+            stPush(++loc);
             loc=hexToDec(s);
             continue;
         }
