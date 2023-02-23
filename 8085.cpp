@@ -329,7 +329,9 @@ ZERO:
         }
         else if(hex_mem == "04"){// INR B - Increment register B
             reg[1]++;
+            int x = reg[0];
             change_flag(reg[1]);
+            reg[0]=x;
         }
         else if(hex_mem == "05"){// DCR B - Decrement register B
             reg[1]--;
