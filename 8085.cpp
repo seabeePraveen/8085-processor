@@ -473,9 +473,12 @@ TWO:
         }
         else if(hex_mem == "22"){// SHLD address - Store H and L registers direct
             loc++;
-            reg[6]=memory[loc];
+            string s=decToHex(loc);
             loc++;
-            reg[5]=memory[loc];
+            s+=decToHex(loc);
+            memory[hexToDec(s)]=reg[6];
+            s=increaseHexByOne(s);
+            memory[hexToDec(s)]=reg[5];
         }
         else if(hex_mem == "23"){// INX H - Increment registers H and L
             string s = decToHex(reg[5])+decToHex(reg[6]);
