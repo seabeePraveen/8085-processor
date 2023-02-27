@@ -264,7 +264,6 @@ void runprogram(int loc){
     cout<<"EXECUTING"<<endl;
     while(loc < 65536){
         string hex_mem = decToHex(memory[loc]);
-        cout<<decToHex(loc)<<endl;
         //skipping IF
         char teleport = hex_mem[0];
         if(teleport == '0')
