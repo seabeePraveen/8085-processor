@@ -583,6 +583,7 @@ THREE:
             memory[hexToDec(s)]=x;
         }
         else if(hex_mem == "37"){// STC - Set carry
+            F[7]='1';
         }
         else if(hex_mem == "39"){// DAD SP - Double add stack pointer to HL
         }
@@ -1288,7 +1289,7 @@ E:
                 loc++;
             }
         }
-        else if(hex_mem == "E3"){// XTHL
+        else if(hex_mem == "E3"){// XTHL - exchange HL with top stack pointer sp & sp+1
         }
         else if(hex_mem == "E4"){// CPO
             if(F[5]=='0'){
