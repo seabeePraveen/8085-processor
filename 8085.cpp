@@ -1466,6 +1466,7 @@ F:
 END:
         loc++;
     }
+    system(CLEAR_SCREEN);
 }
 
 int main(){
