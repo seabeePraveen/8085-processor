@@ -1321,6 +1321,9 @@ E:
             }
         }
         else if(hex_mem == "E9"){// PCHL
+            string s = decToHex(reg[5])+decToHex(reg[6]);
+            loc = hexToDec(s);
+            continue;
         }
         else if(hex_mem == "EA"){// JPE
             if(F[5]=='1'){
