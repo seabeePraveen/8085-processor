@@ -511,9 +511,12 @@ TWO:
         }
         else if(hex_mem == "2A"){// LHLD address - Load H and L registers direct
             loc++;
-            reg[6]=memory[loc];
+            string s = decToHex(loc);
             loc++;
-            reg[5]=memory[loc];
+            s+=decToHex(loc);
+            reg[6]=mem(s);
+            s = increaseHexByOne(s);
+            reg[5]=mem(s);
         }
         else if(hex_mem == "2B"){// DCX H - Decrement registers H and L
             string s = decToHex(reg[5])+decToHex(reg[6]);
