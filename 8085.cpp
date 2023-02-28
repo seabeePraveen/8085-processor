@@ -1179,6 +1179,9 @@ C:
             continue;
         }
         else if(hex_mem == "CE"){// ACI
+            loc++;
+            reg[0]=reg[0]+memory[loc]+int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "CF"){// RST 1
         }
