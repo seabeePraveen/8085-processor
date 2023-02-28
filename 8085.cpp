@@ -1232,6 +1232,9 @@ D:
             stPush(get_reg('E'));
         }
         else if(hex_mem == "D6"){// SUI
+            loc++;
+            reg[0]=reg[0]-memory[loc];
+            change_flag(reg[0]);
         }
         else if(hex_mem == "D7"){// RST 2
         }
