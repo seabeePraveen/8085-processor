@@ -893,21 +893,37 @@ NINE:
             reg[0]=reg[0]-reg[0];
             change_flag(reg[0]);
         }
-        else if(hex_mem == "98"){// SBB B
+        else if(hex_mem == "98"){// SBB B   
+            reg[0]=reg[0]-reg[1]-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "99"){// SBB C
+            reg[0]=reg[0]-reg[2]-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "9A"){// SBB D
+            reg[0]=reg[0]-reg[3]-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "9B"){// SBB E
+            reg[0]=reg[0]-reg[4]-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "9C"){// SBB H
+            reg[0]=reg[0]-reg[5]-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "9D"){// SBB L
+            reg[0]=reg[0]-reg[6]-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "9E"){// SBB M
+            reg[0]=reg[0]-get_M()-int(F[7]);
+            change_flag(reg[0]);
         }
         else if(hex_mem == "9F"){// SBB A
+            reg[0]=reg[0]-reg[0]-int(F[7]);
+            change_flag(reg[0]);
         }
         goto END;
 A:
